@@ -16,11 +16,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["jest", "@testing-library/jest-dom"],
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@styles/*": ["src/styles/*"]
+    }
   },
-  "include": ["src"],
-  "paths": {
-    "@/*": ["src/*"],
-    "@components/*": ["src/components/*"]
-  }
+  "include": ["src"]
 }
