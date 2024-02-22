@@ -1,9 +1,4 @@
-import {
-  FocusEventHandler,
-  forwardRef,
-  InputHTMLAttributes,
-  useState,
-} from 'react'
+import { FocusEventHandler, forwardRef, InputHTMLAttributes, useState } from 'react'
 import Input from './Input'
 import Text from './Text'
 
@@ -13,31 +8,25 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   helpMessage?: React.ReactNode
 }
 
-/**
- * Input 우선순위
- * 1. error
- * 2. focus
- * 3. default
- */
-
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   ({ label, hasError, helpMessage, onFocus, onBlur, ...rest }, ref) => {
     const [isFocused, setIsFocused] = useState(false)
-    const labelColor = hasError ? 'red' : isFocused ? 'blue' : 'grey'
+    const labelColor = hasError ? 'red' : isFocused ? 'blue' : undefined
 
-    const handleFocus = () => {
+    const handleFocus: FocusEventHandler<HTMLInputElement> = (e) => {
       setIsFocused(true)
-      // onFocus?.(event)
+      onFocus?.(e)
     }
 
-    const handleBlur = () => {
+    const handleBlur: FocusEventHandler<HTMLInputElement> = (e) => {
       setIsFocused(false)
+      onBlur?.(e)
     }
 
     return (
       <div>
         {label ? (
-          <Text typography="t7" color={labelColor} display="inline-block">
+          <Text typography="t7" color={labelColor} display="inline-block" margin="0px 0px 8px 0px">
             {label}
           </Text>
         ) : null}
@@ -49,6 +38,12 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           onBlur={handleBlur}
           {...rest}
         />
+
+        {helpMessage && (
+          <Text typography="t7" color={labelColor} display="inline-block" margin="0px 8px 0px 0px">
+            {helpMessage}
+          </Text>
+        )}
       </div>
     )
   },
