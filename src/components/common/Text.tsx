@@ -21,10 +21,7 @@ const Text = styled.span<TextProps>(
     margin,
     fontWeight: bold ? 'bold' : fontWeight,
   }),
-
-  ({ typography = 't5' }) => ({
-    typography: typographyMap[typography],
-  }),
+  ({ typography = 't7' }) => typographyMap[typography],
 )
 
 export default Text

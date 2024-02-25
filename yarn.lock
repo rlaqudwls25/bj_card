@@ -649,7 +649,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-jsx@npm:^7.23.3":
+"@babel/plugin-syntax-jsx@npm:^7.17.12, @babel/plugin-syntax-jsx@npm:^7.23.3":
   version: 7.23.3
   resolution: "@babel/plugin-syntax-jsx@npm:7.23.3"
   dependencies:
@@ -1270,7 +1270,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-react-jsx@npm:^7.22.15, @babel/plugin-transform-react-jsx@npm:^7.22.5":
+"@babel/plugin-transform-react-jsx@npm:^7.17.12, @babel/plugin-transform-react-jsx@npm:^7.22.15, @babel/plugin-transform-react-jsx@npm:^7.22.5":
   version: 7.23.4
   resolution: "@babel/plugin-transform-react-jsx@npm:7.23.4"
   dependencies:
@@ -1851,6 +1851,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/babel-plugin-jsx-pragmatic@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "@emotion/babel-plugin-jsx-pragmatic@npm:0.2.1"
+  dependencies:
+    "@babel/plugin-syntax-jsx": "npm:^7.17.12"
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: 10c0/73c2ad4b06a4b7e8797a624f5a1e7b2c047cc4443dd9fa12facb0fc5468de8f46bfc0047a881b791e4037d9f7e9f5d2b9df893b2d272ffc95d5317466408b88e
+  languageName: node
+  linkType: hard
+
 "@emotion/babel-plugin@npm:^11.11.0":
   version: 11.11.0
   resolution: "@emotion/babel-plugin@npm:11.11.0"
@@ -1867,6 +1878,20 @@ __metadata:
     source-map: "npm:^0.5.7"
     stylis: "npm:4.2.0"
   checksum: 10c0/89cbb6ec0e52c8ee9c2a4b9889ccd4fc3a75d28091d835bfac6d7c4565d3338621e23af0a85f3bcd133e1cae795c692e1dadada015784d4b0554aa5bb111df43
+  languageName: node
+  linkType: hard
+
+"@emotion/babel-preset-css-prop@npm:^11.11.0":
+  version: 11.11.0
+  resolution: "@emotion/babel-preset-css-prop@npm:11.11.0"
+  dependencies:
+    "@babel/plugin-transform-react-jsx": "npm:^7.17.12"
+    "@babel/runtime": "npm:^7.18.3"
+    "@emotion/babel-plugin": "npm:^11.11.0"
+    "@emotion/babel-plugin-jsx-pragmatic": "npm:^0.2.1"
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: 10c0/afa3dae32cbfbedae1b337988326403d64f86b6eb079a40bf509006ed98edefaccf5ebf99813697ea58e4cbd1c6ddc549a754e7cc89407315720d9c691240482
   languageName: node
   linkType: hard
 
@@ -3141,6 +3166,13 @@ __metadata:
   version: 1.1.0
   resolution: "@protobufjs/utf8@npm:1.1.0"
   checksum: 10c0/a3fe31fe3fa29aa3349e2e04ee13dc170cc6af7c23d92ad49e3eeaf79b9766264544d3da824dba93b7855bd6a2982fb40032ef40693da98a136d835752beb487
+  languageName: node
+  linkType: hard
+
+"@remix-run/router@npm:1.15.1":
+  version: 1.15.1
+  resolution: "@remix-run/router@npm:1.15.1"
+  checksum: 10c0/2f84d998defe9943a40fd5bf8794ee6ede521116ff24275cc2294830adb039ef86e34dbdd6555300600016fd8a58a244d4f4df73ff0b2cec7bd749f63d172587
   languageName: node
   linkType: hard
 
@@ -8772,6 +8804,7 @@ __metadata:
     "@babel/preset-react": "npm:^7.23.3"
     "@craco/craco": "npm:^7.1.0"
     "@emotion/babel-plugin": "npm:^11.11.0"
+    "@emotion/babel-preset-css-prop": "npm:^11.11.0"
     "@emotion/react": "npm:^11.11.3"
     "@emotion/styled": "npm:^11.11.0"
     "@testing-library/jest-dom": "npm:^6.4.2"
@@ -8793,6 +8826,7 @@ __metadata:
     prettier: "npm:^3.2.5"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-router-dom: "npm:^6.22.1"
     react-scripts: "npm:5.0.1"
     recoil: "npm:^0.7.7"
     typescript: "npm:^4.4.2"
@@ -12028,6 +12062,30 @@ __metadata:
   version: 0.11.0
   resolution: "react-refresh@npm:0.11.0"
   checksum: 10c0/cbb5616c7ba670bbd2f37ddadcdfefa66e727ea188e89733ccb8184d3b874631104b0bc016d5676a7ade4d9c79100b99b46b6ed10cd117ab5d1ddcbf8653a9f2
+  languageName: node
+  linkType: hard
+
+"react-router-dom@npm:^6.22.1":
+  version: 6.22.1
+  resolution: "react-router-dom@npm:6.22.1"
+  dependencies:
+    "@remix-run/router": "npm:1.15.1"
+    react-router: "npm:6.22.1"
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 10c0/1e6ec4596f134204934d4f701b8acc426867532342c8aec1b5c4ffeaf23afa0099727f58ab8687f7838db069616b8d6ed05a065570f23b3b60cbff405b3fbccd
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.22.1":
+  version: 6.22.1
+  resolution: "react-router@npm:6.22.1"
+  dependencies:
+    "@remix-run/router": "npm:1.15.1"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 10c0/bb33c3a6457e73fa9977133be0c27b60accfc6452cc5d7b62c729cdd2d091a1345a9567cf852c651315548f1f16adac258eeab8ad193b46e4ce926c911dc857c
   languageName: node
   linkType: hard
 
