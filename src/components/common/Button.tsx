@@ -2,12 +2,18 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import { CSSProperties } from 'react'
-import { buttonColor, ButtonColor, buttonSize, ButtonSize, buttonToggleColor } from '@styles/button'
+import {
+  buttonColor,
+  ButtonColor,
+  buttonSize,
+  ButtonSize,
+  buttonToggleColor,
+} from '@styles/button'
 
 interface ButtonProps {
   color?: ButtonColor
   toggleBackgroundColor?: CSSProperties['backgroundColor']
-  size: ButtonSize
+  size?: ButtonSize
   full?: boolean
   disabled?: boolean
   isToggle?: boolean
@@ -20,7 +26,8 @@ const Button = styled.button<ButtonProps>(
     borderRadius: '6px',
   },
 
-  ({ color = 'primary', isToggle }) => (isToggle ? buttonToggleColor[color] : buttonColor[color]),
+  ({ color = 'primary', isToggle }) =>
+    isToggle ? buttonToggleColor[color] : buttonColor[color],
   ({ size = 'small' }) => buttonSize[size],
   ({ full }) =>
     full
