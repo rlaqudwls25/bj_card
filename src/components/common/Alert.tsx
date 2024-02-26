@@ -13,7 +13,13 @@ interface AlertProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Alert = ({ title, description, buttonLabel, isOpen, setIsOpen }: AlertProps) => {
+const Alert = ({
+  title,
+  description,
+  buttonLabel,
+  isOpen,
+  setIsOpen,
+}: AlertProps) => {
   const onCloseAlert = () => {
     setIsOpen(!isOpen)
   }

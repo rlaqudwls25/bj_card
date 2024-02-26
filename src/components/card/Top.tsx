@@ -1,6 +1,5 @@
 import Flex from '@common/Flex'
 import Text from '@common/Text'
-import { css } from '@emotion/react'
 
 interface TopProps {
   title: string
@@ -9,7 +8,7 @@ interface TopProps {
 
 const Top = ({ title, subTitle }: TopProps) => {
   return (
-    <Flex direction="column" css={containerStyles}>
+    <Flex direction="column">
       <Text bold typography="t4">
         {title}
       </Text>
@@ -18,7 +17,4 @@ const Top = ({ title, subTitle }: TopProps) => {
   )
 }
 
-const containerStyles = css`
-  padding: 24px;
-`
 export default Top
