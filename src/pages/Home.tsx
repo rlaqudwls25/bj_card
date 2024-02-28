@@ -1,10 +1,10 @@
 import Top from '@/components/card/Top'
-
 import { getCardList } from '../firebase/crad'
 import { useEffect } from 'react'
 import Banner from '@/components/banner/Banner'
 import Container from '@/components/common/Container'
 import Space from '@/components/common/Space'
+import CardList from '@/components/card/CardList'
 
 const Home = () => {
   useEffect(() => {
@@ -20,6 +20,8 @@ const Home = () => {
 
       <Space padding="24px 0px" />
       <Banner />
+      <Space padding="12px 0px" />
+      <CardList />
     </Container>
   )
 }

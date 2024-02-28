@@ -18,8 +18,8 @@ const Banner = () => {
     <>
       <Swiper spaceBetween={8}>
         {bannerList?.map((banner) => (
-          <SwiperSlide>
-            <Link to="/" key={banner.id}>
+          <SwiperSlide key={banner.id}>
+            <Link to="/">
               <Flex direction="column" css={BannerContainerStyle}>
                 <Text bold typography="t4">
                   {banner.title}
