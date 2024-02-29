@@ -1,6 +1,8 @@
 import { Card } from '@/types/card'
 import {
   collection,
+  doc,
+  getDoc,
   getDocs,
   limit,
   orderBy,
@@ -39,4 +41,15 @@ export async function getCardList(pageParam?: any): Promise<{
   }))
 
   return { cardListData, lastCardIdx }
+}
+
+export async function getCardDetail(id: string) {
+  const cardDoc = await getDoc(doc(store, 'CARD', id))
+
+  console.log('cardDoc', cardDoc)
+
+  return {
+    id: cardDoc.id,
+    ...(cardDoc.data() as Card),
+  }
 }

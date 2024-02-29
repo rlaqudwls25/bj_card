@@ -53,7 +53,9 @@ const ListRowText = ({
 }) => {
   return (
     <Flex direction="column">
-      <Text bold>{title}</Text>
+      <Text bold typography="t4">
+        {title}
+      </Text>
       <Text typography="t7">{subTitle}</Text>
     </Flex>
   )
