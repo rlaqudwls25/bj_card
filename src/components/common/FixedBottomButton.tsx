@@ -6,12 +6,23 @@ import { colors } from '@/styles/colors'
 interface FixedBottomButtonProps {
   label: string
   onClick: () => void
+  disabled?: boolean
 }
 
-const FixedBottomButton = ({ label, onClick }: FixedBottomButtonProps) => {
+const FixedBottomButton = ({
+  label,
+  onClick,
+  disabled,
+}: FixedBottomButtonProps) => {
   return (
     <Container>
-      <Button full size="medium" onClick={onClick} css={ButtonStyle}>
+      <Button
+        full
+        size="medium"
+        onClick={onClick}
+        css={ButtonStyle}
+        disabled={disabled}
+      >
         {label}
       </Button>
     </Container>
@@ -23,7 +34,7 @@ const slideUp = keyframes`
     transform: translateY(100%);
 }
     to {
-        transform: translateY(0);
+    transform: translateY(0);
 }
 `
 

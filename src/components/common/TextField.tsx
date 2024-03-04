@@ -1,4 +1,9 @@
-import { FocusEventHandler, forwardRef, InputHTMLAttributes, useState } from 'react'
+import {
+  FocusEventHandler,
+  forwardRef,
+  InputHTMLAttributes,
+  useState,
+} from 'react'
 import Input from './Input'
 import Text from './Text'
 
@@ -26,7 +31,12 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <div>
         {label ? (
-          <Text typography="t7" color={labelColor} display="inline-block" margin="0px 0px 8px 0px">
+          <Text
+            typography="t7"
+            color={labelColor}
+            display="inline-block"
+            margin="0px 0px 8px 0px"
+          >
             {label}
           </Text>
         ) : null}
@@ -40,7 +50,12 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         />
 
         {helpMessage && (
-          <Text typography="t7" color={labelColor} display="inline-block" margin="0px 8px 0px 0px">
+          <Text
+            typography="t7"
+            color={labelColor}
+            display="inline-block"
+            margin="0px 8px 0px 0px"
+          >
             {helpMessage}
           </Text>
         )}
