@@ -4,3 +4,11 @@ export interface FormValues {
   passwordConfirm: string
   name: string
 }
+
+export type LoginValues = Pick<FormValues, 'email' | 'password'>
+
+export interface User {
+  uid: string
+  email: string
+  displayName: string
+}

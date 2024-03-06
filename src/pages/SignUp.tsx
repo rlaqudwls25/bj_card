@@ -4,8 +4,11 @@ import { auth, store } from '@/firebase/firebase'
 import { FormValues } from '@/types/auth'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { collection, doc, setDoc } from 'firebase/firestore'
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
+  const navigate = useNavigate()
+
   // handleSubmit은 완성된 formData만 궁금하기 때문에 관심사가 다르다.
   const handleSubmit = async (formValues: FormValues) => {
     const { email, password, name } = formValues
@@ -23,6 +26,8 @@ const SignUp = () => {
     }
 
     await setDoc(doc(collection(store, 'USER'), user.uid), newUser)
+
+    navigate('/')
   }
 
   return (

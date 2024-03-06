@@ -1,12 +1,37 @@
+import { userState } from '@/recoil/user'
 import { Link, useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 import Button from '../common/Button'
 import Container from '../common/Container'
 import Flex from '../common/Flex'
+import { signOut } from 'firebase/auth'
+import { auth } from '@/firebase/firebase'
 
 const Navbar = () => {
   const { pathname } = useLocation()
+  const user = useRecoilValue(userState)
 
   const isShowLoginButton = !['/signup', '/login'].includes(pathname)
+
+  console.log('user', user)
+
+  const onLogout = async () => {
+    await signOut(auth)
+  }
+
+  const renderButton = () => {
+    if (user && isShowLoginButton) {
+      return <Button onClick={onLogout}>로그아웃</Button>
+    }
+
+    if (isShowLoginButton) {
+      return (
+        <Link to="/login">
+          <Button>회원가입/로그인</Button>
+        </Link>
+      )
+    }
+  }
 
   return (
     <Container position="sticky" border>
@@ -14,11 +39,7 @@ const Navbar = () => {
         <Link to="/">
           <HomeIcon />
         </Link>
-        {isShowLoginButton && (
-          <Link to="/signup">
-            <Button>회원가입</Button>
-          </Link>
-        )}
+        {renderButton()}
       </Flex>
     </Container>
   )

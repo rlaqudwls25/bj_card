@@ -5,6 +5,7 @@ import { Global } from '@emotion/react'
 import globalStyles from './styles/globalStyles'
 import { RecoilRoot } from 'recoil'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import AuthGuard from './components/auth/AuthGuard'
 
 const queryClient = new QueryClient({
   defaultOptions: {},
@@ -16,7 +17,9 @@ root.render(
     <Global styles={globalStyles} />
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <App />
+        <AuthGuard>
+          <App />
+        </AuthGuard>
       </RecoilRoot>
     </QueryClientProvider>
   </React.StrictMode>,

@@ -7,7 +7,8 @@
       "@common/*": ["src/components/common/*"],
       "@styles/*": ["src/styles/*"],
       "@pages/*": ["src/pages/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@recoil/*": ["src/recoil/*"]
     }
   }
 }

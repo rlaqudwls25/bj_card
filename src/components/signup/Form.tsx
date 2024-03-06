@@ -18,7 +18,7 @@ const SignupForm = ({
     name: '',
   })
 
-  const valiDateSignupForm = (formValues: FormValues) => {
+  const validateSignupForm = (formValues: FormValues) => {
     let error: Partial<FormValues> = {}
 
     if (!validate.isEmail(formValues.email)) {
@@ -54,7 +54,7 @@ const SignupForm = ({
     [formValues],
   )
 
-  const errorCheck = useMemo(() => valiDateSignupForm(formValues), [formValues])
+  const errorCheck = useMemo(() => validateSignupForm(formValues), [formValues])
 
   const isDisabled = Object.keys(errorCheck).length !== 0
 
@@ -69,7 +69,7 @@ const SignupForm = ({
         helpMessage={Boolean(formValues.email) && errorCheck.email}
       />
 
-      <Spacing size="16" direction="horizontal" />
+      <Spacing size={16} direction="horizontal" />
 
       <TextField
         label="비밀번호"
@@ -81,7 +81,7 @@ const SignupForm = ({
         helpMessage={Boolean(formValues.password) && errorCheck.password}
       />
 
-      <Spacing size="16" direction="horizontal" />
+      <Spacing size={16} direction="horizontal" />
 
       <TextField
         label="비밀번호 재확인"
@@ -98,7 +98,7 @@ const SignupForm = ({
         }
       />
 
-      <Spacing size="16" direction="horizontal" />
+      <Spacing size={16} direction="horizontal" />
 
       <TextField
         label="이름"
