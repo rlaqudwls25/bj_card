@@ -11,9 +11,15 @@ import Text from '@/components/common/Text'
 import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { removeHtmlTag } from '@/utils/removeHtmlTag'
+import { useNavigate } from 'react-router-dom'
 
 const Card = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
+
+  const moveToApply = () => {
+    navigate(`/apply/${id}`)
+  }
 
   const { data } = useQuery({
     queryKey: ['cardDetail', id],
@@ -57,7 +63,7 @@ const Card = () => {
 
       <Space padding="24px 0px" />
 
-      <FixedBottomButton label="신청하기" onClick={() => {}} />
+      <FixedBottomButton label="신청하기" onClick={moveToApply} />
     </Container>
   )
 

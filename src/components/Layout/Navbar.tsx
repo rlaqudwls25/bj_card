@@ -13,8 +13,6 @@ const Navbar = () => {
 
   const isShowLoginButton = !['/signup', '/login'].includes(pathname)
 
-  console.log('user', user)
-
   const onLogout = async () => {
     await signOut(auth)
   }

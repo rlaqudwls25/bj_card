@@ -35,7 +35,7 @@ const Login = () => {
   return (
     <Container>
       <LoginForm onSubmit={handleSubmit} />
-      <Alert title="계정 정보를 다시 확인해주세요." buttonLabel="확인" />
+      <Alert title={'계정 정보를 다시 확인해주세요.'} buttonLabel="확인" />
     </Container>
   )
 }

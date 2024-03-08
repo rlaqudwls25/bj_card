@@ -46,8 +46,6 @@ export async function getCardList(pageParam?: any): Promise<{
 export async function getCardDetail(id: string) {
   const cardDoc = await getDoc(doc(store, 'CARD', id))
 
-  console.log('cardDoc', cardDoc)
-
   return {
     id: cardDoc.id,
     ...(cardDoc.data() as Card),
