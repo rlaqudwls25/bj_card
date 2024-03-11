@@ -66,7 +66,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.1.0, @babel/core@npm:^7.11.1, @babel/core@npm:^7.12.3, @babel/core@npm:^7.16.0, @babel/core@npm:^7.7.2, @babel/core@npm:^7.8.0":
+"@babel/core@npm:^7.1.0, @babel/core@npm:^7.11.1, @babel/core@npm:^7.12.3, @babel/core@npm:^7.16.0, @babel/core@npm:^7.24.0, @babel/core@npm:^7.7.2, @babel/core@npm:^7.8.0":
   version: 7.24.0
   resolution: "@babel/core@npm:7.24.0"
   dependencies:
@@ -8907,6 +8907,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "j_card@workspace:."
   dependencies:
+    "@babel/core": ^7.24.0
     "@babel/preset-react": ^7.23.3
     "@craco/craco": ^7.1.0
     "@emotion/babel-plugin": ^11.11.0
