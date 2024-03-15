@@ -1,10 +1,11 @@
 import { 약관목록 } from '@/constants/apply'
+import { ApplyValues } from '@/types/apply'
 import { useState } from 'react'
 import Agreement from '../common/Agreement'
 import FixedBottomButton from '../common/FixedBottomButton'
 import Spacing from '../common/Spacing'
 
-const Terms = ({ onNext }: { onNext: (id: string[]) => void }) => {
+const Terms = ({ onNext }: { onNext: (id: ApplyValues['terms']) => void }) => {
   const [agree, setAgree] = useState<Record<string, boolean>>(
     약관목록.reduce((acc, cur) => {
       return { ...acc, [cur.id]: false }
