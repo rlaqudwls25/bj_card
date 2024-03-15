@@ -7,7 +7,6 @@ const Apply = () => {
   const [step, setStep] = useState(0)
 
   const handleTermsChange = (terms: string[]) => {
-    console.log('terms', terms)
 
     setStep(1)
   }
