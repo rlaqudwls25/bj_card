@@ -7,6 +7,7 @@ import Login from '@/pages/Login'
 import Navbar from '@components/Layout/Navbar'
 import PrivateRoute from '@components/auth/PrivateRoute'
 import Apply from '@/pages/Apply'
+import MyPage from './pages/My'
 
 function App() {
   return (
@@ -24,6 +25,15 @@ function App() {
           element={
             <PrivateRoute>
               <Apply />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/my"
+          element={
+            <PrivateRoute>
+              <MyPage />
             </PrivateRoute>
           }
         />

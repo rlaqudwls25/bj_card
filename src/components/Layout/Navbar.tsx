@@ -4,8 +4,7 @@ import { useRecoilValue } from 'recoil'
 import Button from '../common/Button'
 import Container from '../common/Container'
 import Flex from '../common/Flex'
-import { signOut } from 'firebase/auth'
-import { auth } from '@/firebase/firebase'
+import MyImage from '../my/MyImage'
 
 const Navbar = () => {
   const { pathname } = useLocation()
@@ -13,13 +12,17 @@ const Navbar = () => {
 
   const isShowLoginButton = !['/signup', '/login'].includes(pathname)
 
-  const onLogout = async () => {
-    await signOut(auth)
-  }
+  // const onLogout = async () => {
+  //   await signOut(auth)
+  // }
 
   const renderButton = () => {
     if (user && isShowLoginButton) {
-      return <Button onClick={onLogout}>로그아웃</Button>
+      return (
+        <Link to="/my">
+          <MyImage />
+        </Link>
+      )
     }
 
     if (isShowLoginButton) {
