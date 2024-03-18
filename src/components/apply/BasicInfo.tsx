@@ -30,13 +30,13 @@ const BasicInfo = ({
         [name]: value,
       })
     },
-    [],
+    [basicValue],
   )
 
   const 모든항목을입력했는가 = Object.values(basicValue).every((value) => value)
 
   return (
-    <Flex>
+    <Flex direction="column">
       <Select
         label="연소득"
         name="salary"

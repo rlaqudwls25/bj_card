@@ -13,9 +13,20 @@ export interface ApplyValues {
   salary: string
   creditScore: string
   payDate: string
+  isMaster: boolean
+  isRf: boolean
+  isHipass: boolean
+  status: keyof typeof APPLY_STATUS
 }
 
 export interface Option {
   label: string
   value: string | number
 }
+
+export const APPLY_STATUS = {
+  READY: 'READY',
+  PROGRESS: 'PROGRESS',
+  COMPLETE: 'COMPLETE',
+  REJECT: 'REJECT',
+} as const

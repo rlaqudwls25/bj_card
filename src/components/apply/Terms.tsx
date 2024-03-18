@@ -1,6 +1,6 @@
 import { 약관목록 } from '@/constants/apply'
 import { ApplyValues } from '@/types/apply'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import Agreement from '../common/Agreement'
 import FixedBottomButton from '../common/FixedBottomButton'
 import Spacing from '../common/Spacing'
@@ -62,15 +62,14 @@ const Terms = ({ onNext }: { onNext: (id: ApplyValues['terms']) => void }) => {
 
         {약관목록.map((약관) => {
           return (
-            <>
+            <Fragment key={약관.id}>
               <Agreement.Description
-                key={약관.id}
                 isChecked={agree[약관.id]}
                 onChange={(isChecked) => handleAgreement(약관.id, isChecked)}
               >
                 {약관.title}
               </Agreement.Description>
-            </>
+            </Fragment>
           )
         })}
       </Agreement>
