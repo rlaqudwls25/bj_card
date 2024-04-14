@@ -36,3 +36,28 @@ export async function updateApplyStatus({
 
   updateDoc(applied.ref, applyValues)
 }
+
+export async function getAppliedCard({
+  userId,
+  cardId,
+}: {
+  userId: string
+  cardId: string
+}) {
+  const snapshot = await getDocs(
+    query(
+      collection(store, 'APPLY'),
+      where('userId', '==', userId),
+      where('cardId', '==', cardId),
+    ),
+  )
+
+  // user가 신청한 카드가 없을 경우
+  if (snapshot.docs.length === 0) {
+    return null
+  }
+
+  const applied = snapshot.docs[0]
+
+  return applied.data() as ApplyValues
+}

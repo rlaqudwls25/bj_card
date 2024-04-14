@@ -2,8 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import { APPLY_STATUS } from '@/types/apply'
 
 interface usePollApplyStatusProps {
-  onSuccess?: () => void
-  onError?: () => void
   enabled: boolean
 }
 

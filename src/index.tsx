@@ -6,6 +6,7 @@ import globalStyles from './styles/globalStyles'
 import { RecoilRoot } from 'recoil'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import AuthGuard from './components/auth/AuthGuard'
+import { AlertContextProvider } from './contexts/AlertContext'
 
 const queryClient = new QueryClient({
   defaultOptions: {},
@@ -18,7 +19,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <AuthGuard>
-          <App />
+          <AlertContextProvider>
+            <App />
+          </AlertContextProvider>
         </AuthGuard>
       </RecoilRoot>
     </QueryClientProvider>

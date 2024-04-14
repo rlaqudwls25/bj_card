@@ -11,9 +11,10 @@ interface AlertProps {
   title?: string
   description?: string
   buttonLabel?: string
+  onClick?: () => void
 }
 
-const Alert = ({ title, description, buttonLabel }: AlertProps) => {
+const Alert = ({ title, description, buttonLabel, onClick }: AlertProps) => {
   const [isOpenTest, setIsOpenTest] = useRecoilState(alertState)
 
   const onCloseAlert = () => {
@@ -35,7 +36,7 @@ const Alert = ({ title, description, buttonLabel }: AlertProps) => {
             </Text>
             {description && <Text typography="t5">{description}</Text>}
             <Flex justify="flex-end">
-              <Button size="small" onClick={onCloseAlert}>
+              <Button size="medium" onClick={onCloseAlert}>
                 {buttonLabel}
               </Button>
             </Flex>

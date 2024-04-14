@@ -3,5 +3,5 @@ export const removeHtmlTag = (str: string) => {
   // [^>] >를 제외한 모든 문자
   // * 0번 이상 반복
   // > 문자로 끝
-  return str.replace(/<[^>]*>/g, '')
+  return str?.replace(/<[^>]*>/g, '')
 }

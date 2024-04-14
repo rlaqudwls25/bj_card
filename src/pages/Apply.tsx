@@ -2,12 +2,15 @@ import Apply from '@/components/apply'
 import { useApplyCardMutation } from '@/hooks/useApplyCardMutation'
 import { useCallback, useEffect, useState } from 'react'
 import { usePollApplyStatus } from '@/hooks/usePollApplyStatus'
-import { APPLY_STATUS } from '@/types/apply'
+import { ApplyValues, APPLY_STATUS } from '@/types/apply'
 
 import { updateApplyStatus } from '@/firebase/apply'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@/recoil/user'
+import useAppliedCard from '../hooks/useAppliedCard'
+import { useAlertContext } from '@/contexts/AlertContext'
+import FullPageLoader from '@/components/common/FullPageLoader'
 
 const ApplyPage = () => {
   const user = useRecoilValue(userState)
@@ -15,7 +18,14 @@ const ApplyPage = () => {
   const navigate = useNavigate()
   const [ready, setReady] = useState(false)
 
+  const { open } = useAlertContext()
+
   const { data, isLoading } = usePollApplyStatus({ enabled: ready })
+
+  const { data: appliedCard } = useAppliedCard({
+    userId: user?.uid as string,
+    cardId: id as string,
+  })
 
   const handleState = useCallback(async () => {
     if (data === APPLY_STATUS.COMPLETE) {
@@ -44,6 +54,24 @@ const ApplyPage = () => {
   }, [data, id, user?.uid, navigate])
 
   useEffect(() => {
+    if (appliedCard === null) {
+      return
+    }
+
+    if (appliedCard?.status === APPLY_STATUS.COMPLETE) {
+      open({
+        title: '이미 발급이 완료된 카드입니다.',
+        buttonLabel: '확인',
+        onComplete: () => {
+          window.history.back()
+        },
+      })
+    }
+
+    // setReady(true)
+  }, [appliedCard])
+
+  useEffect(() => {
     handleState()
   }, [data, id, user?.uid, handleState])
 
@@ -56,11 +84,19 @@ const ApplyPage = () => {
     },
   })
 
-  if (ready || isLoading) {
-    return <div>로딩중</div>
+  if (appliedCard !== null && appliedCard?.status === APPLY_STATUS.COMPLETE) {
+    return null
   }
 
-  return <Apply onSubmit={mutate} />
+  if (ready || isLoading) {
+    return <FullPageLoader message="카드를 신청중입니다." />
+  }
+
+  return (
+    <>
+      <Apply onSubmit={mutate} />
+    </>
+  )
 }
 
 export default ApplyPage
