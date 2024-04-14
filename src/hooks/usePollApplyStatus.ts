@@ -27,8 +27,6 @@ function getApplyStatus() {
 
   const status = values[Math.floor(Math.random() * values.length)]
 
-  console.log('status', status)
-
   if (status === APPLY_STATUS.REJECT) {
     throw new Error('카드 발급에 실패했습니다.')
   }
