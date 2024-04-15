@@ -12,6 +12,12 @@ import useAppliedCard from '../hooks/useAppliedCard'
 import { useAlertContext } from '@/contexts/AlertContext'
 import FullPageLoader from '@/components/common/FullPageLoader'
 
+const STATUS_MESSAGE = {
+  [APPLY_STATUS.READY]: '카드 심사를 준비중입니다.',
+  [APPLY_STATUS.PROGRESS]: '카드를 심사중입니다. 잠시만 기다려주세요.',
+  [APPLY_STATUS.COMPLETE]: '카드 신청이 완료되었습니다.',
+}
+
 const ApplyPage = () => {
   const user = useRecoilValue(userState)
   const { id } = useParams()
@@ -20,7 +26,7 @@ const ApplyPage = () => {
 
   const { open } = useAlertContext()
 
-  const { data, isLoading } = usePollApplyStatus({ enabled: ready })
+  const { data: status, isLoading } = usePollApplyStatus({ enabled: ready })
 
   const { data: appliedCard } = useAppliedCard({
     userId: user?.uid as string,
@@ -28,7 +34,7 @@ const ApplyPage = () => {
   })
 
   const handleState = useCallback(async () => {
-    if (data === APPLY_STATUS.COMPLETE) {
+    if (status === APPLY_STATUS.COMPLETE) {
       await updateApplyStatus({
         cardId: id as string,
         userId: user?.uid as string,
@@ -36,11 +42,9 @@ const ApplyPage = () => {
           status: APPLY_STATUS.COMPLETE,
         },
       })
-
       navigate('/apply/done?success=true', { replace: true })
     }
-
-    if (data === (APPLY_STATUS.REJECT as string)) {
+    if (status === (APPLY_STATUS.REJECT as string)) {
       await updateApplyStatus({
         cardId: id as string,
         userId: user?.uid as string,
@@ -48,10 +52,9 @@ const ApplyPage = () => {
           status: APPLY_STATUS.REJECT,
         },
       })
-
       navigate('/apply/done?success=false', { replace: true })
     }
-  }, [data, id, user?.uid, navigate])
+  }, [status, id, user?.uid, navigate])
 
   useEffect(() => {
     if (appliedCard === null) {
@@ -68,12 +71,12 @@ const ApplyPage = () => {
       })
     }
 
-    // setReady(true)
+    setReady(true)
   }, [appliedCard])
 
   useEffect(() => {
     handleState()
-  }, [data, id, user?.uid, handleState])
+  }, [status, id, user?.uid, handleState])
 
   const { mutate } = useApplyCardMutation({
     onSuccess: () => {
@@ -84,12 +87,14 @@ const ApplyPage = () => {
     },
   })
 
+  console.log('status', status)
+
   if (appliedCard !== null && appliedCard?.status === APPLY_STATUS.COMPLETE) {
     return null
   }
 
   if (ready || isLoading) {
-    return <FullPageLoader message="카드를 신청중입니다." />
+    return <FullPageLoader message={STATUS_MESSAGE[status ?? 'READY']} />
   }
 
   return (

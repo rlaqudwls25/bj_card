@@ -3,6 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { userState } from '@/recoil/user'
+import FullPageLoader from '../common/FullPageLoader'
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -22,7 +23,12 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
     setIsAuthenticated(true)
   })
 
-  if (!isAuthenticated) return <div>Loading...</div>
+  if (!isAuthenticated)
+    return (
+      <div>
+        <FullPageLoader width={500} height={500} />
+      </div>
+    )
 
   return <>{children}</>
 }

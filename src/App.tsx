@@ -26,7 +26,7 @@ function App() {
           path="/apply/:id"
           element={
             <PrivateRoute>
-              <Suspense fallback={<>안녕안녕</>}>
+              <Suspense fallback={<></>}>
                 <Apply />
               </Suspense>
             </PrivateRoute>
