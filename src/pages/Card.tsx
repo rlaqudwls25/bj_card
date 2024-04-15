@@ -12,7 +12,6 @@ import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { removeHtmlTag } from '@/utils/removeHtmlTag'
 import { useNavigate } from 'react-router-dom'
-import { useAlertContext } from '@/contexts/AlertContext'
 
 const Card = () => {
   const { id } = useParams()
@@ -32,8 +31,6 @@ const Card = () => {
   const { name, corpName, promotion, tags, benefit } = data
 
   const subText = promotion ? removeHtmlTag(promotion.title) : tags.join(', ')
-
-  console.log('subText', subText)
 
   return (
     <Container>

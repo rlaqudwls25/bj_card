@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 import Flex from '../common/Flex'
 import Text from '../common/Text'
 
@@ -22,19 +23,14 @@ const ListRow = ({
   withArrow,
 }: ListRowProps) => {
   return (
-    <Flex as="li" css={ListRowContainerStyle} onClick={onClick}>
+    <ListContainer align="center" onClick={onClick}>
       <Flex css={ListRowLeftStyle}>{left}</Flex>
       <Flex css={ListRowContentsStyle}>{contents}</Flex>
       <Flex>{right}</Flex>
       {withArrow && <IconArrowRight />}
-    </Flex>
+    </ListContainer>
   )
 }
-
-const ListRowContainerStyle = css`
-  padding: 16px 0px;
-  align-items: center;
-`
 
 const ListRowLeftStyle = css`
   margin-right: 14px;
@@ -52,7 +48,7 @@ const ListRowText = ({
   subTitle: string
 }) => {
   return (
-    <Flex direction="column">
+    <Flex direction="column" gap={10}>
       <Text bold typography="t4">
         {title}
       </Text>
@@ -76,5 +72,11 @@ const IconArrowRight = () => {
     </svg>
   )
 }
+
+const ListContainer = styled(Flex)`
+  padding: 30px 10px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px -3px rgba(0, 0, 0, 0.1);
+`
 
 export default ListRow
