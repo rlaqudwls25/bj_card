@@ -1,4 +1,5 @@
 const CracoAlias = require('craco-alias')
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 module.exports = {
   plugins: [
@@ -19,4 +20,8 @@ module.exports = {
     ],
     plugins: ['@emotion/babel-plugin'],
   },
+
+  // webpack: {
+  //   plugins: [new BundleAnalyzerPlugin()],
+  // },
 }

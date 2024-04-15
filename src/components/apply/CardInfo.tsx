@@ -3,6 +3,8 @@ import Button from '@common/Button'
 import { useState } from 'react'
 import Spacing from '@common/Spacing'
 import FixedBottomButton from '@common/FixedBottomButton'
+import Flex from '../common/Flex'
+import styled from '@emotion/styled'
 
 export type CardInfoValues = Pick<ApplyValues, 'isMaster' | 'isRf' | 'isHipass'>
 
@@ -12,7 +14,7 @@ const CardInfo = ({
   onNext: (cardInfoValues: CardInfoValues) => void
 }) => {
   const [cardValue, setCardValue] = useState<CardInfoValues>({
-    isMaster: false,
+    isMaster: true,
     isRf: false,
     isHipass: false,
   })
@@ -27,10 +29,10 @@ const CardInfo = ({
   }
 
   return (
-    <div>
+    <CardInfoContainer direction="column" gap={10}>
       <Button.Group title="해외결제">
         <Button
-          size="medium"
+          size="large"
           name="isMaster"
           isToggle={!cardValue.isMaster}
           data-value={true}
@@ -39,7 +41,7 @@ const CardInfo = ({
           Master
         </Button>
         <Button
-          size="medium"
+          size="large"
           name="isMaster"
           isToggle={cardValue.isMaster}
           data-value={false}
@@ -53,7 +55,7 @@ const CardInfo = ({
 
       <Button.Group title="후불교통">
         <Button
-          size="medium"
+          size="large"
           name="isRf"
           isToggle={cardValue.isRf}
           data-value={false}
@@ -62,7 +64,7 @@ const CardInfo = ({
           신청안함
         </Button>
         <Button
-          size="medium"
+          size="large"
           name="isRf"
           isToggle={!cardValue.isRf}
           data-value={true}
@@ -76,7 +78,7 @@ const CardInfo = ({
 
       <Button.Group title="후불하이패스">
         <Button
-          size="medium"
+          size="large"
           name="isHipass"
           isToggle={cardValue.isHipass}
           data-value={false}
@@ -85,7 +87,7 @@ const CardInfo = ({
           신청안함
         </Button>
         <Button
-          size="medium"
+          size="large"
           name="isHipass"
           isToggle={!cardValue.isHipass}
           data-value={true}
@@ -95,9 +97,17 @@ const CardInfo = ({
         </Button>
       </Button.Group>
 
-      <FixedBottomButton label="다음" onClick={() => onNext(cardValue)} />
-    </div>
+      <FixedBottomButton
+        label="다음"
+        size="large"
+        onClick={() => onNext(cardValue)}
+      />
+    </CardInfoContainer>
   )
 }
+
+const CardInfoContainer = styled(Flex)`
+  padding: 20px;
+`
 
 export default CardInfo

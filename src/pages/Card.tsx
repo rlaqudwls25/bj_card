@@ -63,7 +63,7 @@ const Card = () => {
 
       <Space padding="24px 0px" />
 
-      <FixedBottomButton label="신청하기" onClick={moveToApply} />
+      <FixedBottomButton label="신청하기" size="large" onClick={moveToApply} />
     </Container>
   )
 

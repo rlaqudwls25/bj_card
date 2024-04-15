@@ -75,6 +75,7 @@ const Terms = ({ onNext }: { onNext: (id: ApplyValues['terms']) => void }) => {
       </Agreement>
       <FixedBottomButton
         label="약관동의"
+        size="large"
         disabled={!allAgreementsStatus}
         onClick={() => onNext(Object.keys(agree))}
       />

@@ -110,6 +110,7 @@ const SignupForm = ({
       />
 
       <FixedBottomButton
+        size="large"
         label="회원가입"
         onClick={() => onSubmit(formValues)}
         disabled={isDisabled}

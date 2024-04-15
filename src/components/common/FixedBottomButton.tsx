@@ -2,23 +2,26 @@ import Button from './Button'
 import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { colors } from '@/styles/colors'
+import { ButtonSize } from '@/styles/button'
 
 interface FixedBottomButtonProps {
   label: string
   onClick: () => void
   disabled?: boolean
+  size?: ButtonSize
 }
 
 const FixedBottomButton = ({
   label,
   onClick,
   disabled,
+  size,
 }: FixedBottomButtonProps) => {
   return (
     <Container>
       <Button
         full
-        size="medium"
+        size={size}
         onClick={onClick}
         css={ButtonStyle}
         disabled={disabled}

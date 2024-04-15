@@ -1,3 +1,4 @@
+import { colors } from '@/styles/colors'
 import styled from '@emotion/styled'
 import React from 'react'
 import Text from './Text'
@@ -39,7 +40,7 @@ const CheckBoxInput = styled.input`
   position: relative;
 
   &:checked {
-    background-color: #3d8b62;
+    background-color: ${colors.blue};
     border: none;
 
     &::before {

@@ -4,15 +4,15 @@ import { colors } from './colors'
 export const buttonSize = {
   small: css`
     font-size: 13px;
-    padding: 8px 9px;
+    padding: 8px 10px;
   `,
   medium: css`
     font-size: 15px;
-    padding: 10px 15px;
+    padding: 10px 12px;
   `,
   large: css`
     font-size: 17px;
-    padding: 12px 20px;
+    padding: 13px 15px;
   `,
 }
 

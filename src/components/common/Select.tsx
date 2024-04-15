@@ -11,20 +11,6 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   placeholder?: string
 }
 
-const BaseSelect = styled.select`
-  height: 52px;
-  background-color: ${colors.grey};
-  border: none;
-  border-radius: 16px;
-  padding: 0 16px;
-  cursor: pointer;
-
-  // 필수값이 입력되지 않았을 때
-  &:required:invalid {
-    color: #c0c4c7;
-  }
-`
-
 const Select = ({
   label,
   options,
@@ -36,8 +22,9 @@ const Select = ({
     <Flex direction="column">
       {label ? (
         <Text
-          typography="t7"
+          typography="t6"
           color="black"
+          bold
           display="inline-block"
           margin="0px 0px 8px 0px"
         >
@@ -57,5 +44,24 @@ const Select = ({
     </Flex>
   )
 }
+
+const BaseSelect = styled.select`
+  position: relative;
+  height: 52px;
+  background-color: ${colors.grey};
+  border: none;
+  border-radius: 16px;
+  padding: 0 16px;
+  cursor: pointer;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  // 필수값이 입력되지 않았을 때
+  &:required:invalid {
+    color: #c0c4c7;
+  }
+`
 
 export default Select

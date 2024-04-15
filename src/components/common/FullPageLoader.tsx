@@ -10,6 +10,8 @@ const FullPageLoader = ({ message }: { message?: string }) => {
         <img
           src="https://cdn.pixabay.com/animation/2023/06/13/15/12/15-12-47-323_512.gif"
           alt="로켓 이미지"
+          width="200px"
+          height="200px"
         />
 
         <Spacing size={120} />
