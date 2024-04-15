@@ -2,7 +2,7 @@ import Flex from '../common/Flex'
 import Text from '../common/Text'
 import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { getBannerList } from '@/firebase/banner'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -12,9 +12,10 @@ import 'swiper/css'
 import { colors } from '@/styles/colors'
 import { useRef } from 'react'
 import styled from '@emotion/styled'
+import Skeleton from '../common/Skeleton'
 
 const Banner = () => {
-  const { data: bannerList } = useQuery({
+  const { data: bannerList } = useSuspenseQuery({
     queryKey: ['bannerList'],
     queryFn: getBannerList,
   })
@@ -97,5 +98,15 @@ const SVG = styled.svg`
   stroke-dasharray: 125.6;
   transform: rotate(-90deg);
 `
+
+const BannerSkeleton = () => {
+  return (
+    <Flex align="center">
+      <Skeleton width={100} height={90} />
+    </Flex>
+  )
+}
+
+Banner.Skeleton = BannerSkeleton
 
 export default Banner

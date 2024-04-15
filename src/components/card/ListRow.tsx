@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import Flex from '../common/Flex'
+import Skeleton from '../common/Skeleton'
 import Text from '../common/Text'
 
 interface ListRowProps {
@@ -58,6 +59,18 @@ const ListRowText = ({
 }
 
 ListRow.Text = ListRowText
+
+const ListRowSkeleton = () => {
+  return (
+    <ListContainer align="center">
+      <Flex css={ListRowContentsStyle} align="center">
+        <Skeleton width={100} height={100} />
+      </Flex>
+    </ListContainer>
+  )
+}
+
+ListRow.Skeleton = ListRowSkeleton
 
 const IconArrowRight = () => {
   return (

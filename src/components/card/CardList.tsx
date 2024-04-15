@@ -1,5 +1,5 @@
 import ListRow from './ListRow'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import { getCardList } from '@/firebase/crad'
 import { Card } from '@/types/card'
 import { QueryDocumentSnapshot } from 'firebase/firestore'
@@ -12,17 +12,18 @@ const CardList = () => {
 
   // hasNextPage: 다음 페이지가 있는지 여부
   // fetchNextPage: 다음 페이지를 가져오는 함수
-  const { data, hasNextPage, fetchNextPage, isFetching } = useInfiniteQuery<{
-    cardListData: Card[]
-    lastCardIdx: QueryDocumentSnapshot<any>
-  }>({
-    queryKey: ['cardList'],
-    queryFn: ({ pageParam }) => getCardList(pageParam as string),
-    initialPageParam: undefined,
-    getNextPageParam: (snapshot) => {
-      return snapshot.lastCardIdx
-    },
-  })
+  const { data, hasNextPage, fetchNextPage, isFetching } =
+    useSuspenseInfiniteQuery<{
+      cardListData: Card[]
+      lastCardIdx: QueryDocumentSnapshot<any>
+    }>({
+      queryKey: ['cardList'],
+      queryFn: ({ pageParam }) => getCardList(pageParam as string),
+      initialPageParam: undefined,
+      getNextPageParam: (snapshot) => {
+        return snapshot.lastCardIdx
+      },
+    })
 
   if (!data) {
     return null
@@ -43,7 +44,7 @@ const CardList = () => {
       <InfiniteScroll
         dataLength={cards.length}
         hasMore={hasNextPage}
-        loader={<h4>Loading...</h4>}
+        loader={<ListRow.Skeleton />}
         next={fetchMore}
         scrollThreshold="120px"
       >

@@ -1,10 +1,11 @@
 import Top from '@/components/card/Top'
 import { getCardList } from '../firebase/crad'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import Banner from '@/components/banner/Banner'
 import Container from '@/components/common/Container'
 import Space from '@/components/common/Space'
 import CardList from '@/components/card/CardList'
+import ListRow from '@/components/card/ListRow'
 
 const Home = () => {
   useEffect(() => {
@@ -19,9 +20,18 @@ const Home = () => {
       />
 
       <Space padding="24px 0px" />
-      <Banner />
+      <Suspense fallback={<Banner.Skeleton />}>
+        <Banner />
+      </Suspense>
       <Space padding="12px 0px" />
-      <CardList />
+
+      <Suspense
+        fallback={[...new Array(10)].map((_, idx) => (
+          <ListRow.Skeleton key={idx} />
+        ))}
+      >
+        <CardList />
+      </Suspense>
     </Container>
   )
 }
