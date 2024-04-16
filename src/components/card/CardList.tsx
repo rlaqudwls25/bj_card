@@ -53,7 +53,7 @@ const CardList = () => {
 
           return (
             <ListRow
-              key={id}
+              key={idx}
               // left={<div>왼쪽</div>}
               contents={<ListRow.Text title={`${idx + 1}위`} subTitle={name} />}
               right={payback && <Badge label={payback} />}
