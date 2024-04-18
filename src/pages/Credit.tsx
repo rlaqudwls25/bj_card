@@ -42,9 +42,9 @@ const CreditPage = () => {
     navigate('/credit/check')
   }
 
-  const goToCardList = () => {}
-
-  console.log('creditData', creditData)
+  const goToCardList = () => {
+    navigate('/')
+  }
 
   return (
     <>
