@@ -1,3 +1,4 @@
+import { useAlertContext } from '@/contexts/AlertContext'
 import { userState } from '@/recoil/user'
 import { colors } from '@/styles/colors'
 import styled from '@emotion/styled'
@@ -10,6 +11,17 @@ const Account = () => {
   const hasAccount = false
 
   const user = useRecoilValue(userState)
+
+  const { open } = useAlertContext()
+
+  const createAccount = () => {
+    open({
+      title: '시스템 점검 중 입니다.',
+      description: '다음에 다시 이용해주세요.',
+      buttonLabel: '확인',
+      onComplete: () => {},
+    })
+  }
 
   if (hasAccount) {
     return (
@@ -43,7 +55,9 @@ const Account = () => {
         <Text typography="t5" bold style={{ whiteSpace: 'pre-wrap' }}>
           {title}
         </Text>
-        <Button size="small">{buttonLabel}</Button>
+        <Button size="small" onClick={createAccount}>
+          {buttonLabel}
+        </Button>
       </Flex>
       <img
         src="https://cdn0.iconfinder.com/data/icons/investing-and-finance-1/240/cash-256.png"

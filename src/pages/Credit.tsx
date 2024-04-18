@@ -13,8 +13,6 @@ import { useQuery } from '@tanstack/react-query'
 import { getCredit } from '@/firebase/credit'
 
 const CreditPage = () => {
-  const 신용점수를조회했는가 = false
-
   const user = useRecoilValue(userState)
   const navigate = useNavigate()
 
