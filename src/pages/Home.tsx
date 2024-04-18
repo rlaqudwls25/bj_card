@@ -3,9 +3,13 @@ import { getCardList } from '../firebase/crad'
 import { Suspense, useEffect } from 'react'
 import Banner from '@/components/banner/Banner'
 import Container from '@/components/common/Container'
-import Space from '@/components/common/Space'
 import CardList from '@/components/card/CardList'
 import ListRow from '@/components/card/ListRow'
+import Account from '@/components/account/Account'
+import Spacing from '@/components/common/Spacing'
+import CreditScore, {
+  CreditScoreSkeleton,
+} from '@/components/account/CreditScore'
 
 const Home = () => {
   useEffect(() => {
@@ -19,11 +23,23 @@ const Home = () => {
         subTitle="회원님을 위한 혜택 좋은 카드를 모아놓았습니다."
       />
 
-      <Space padding="24px 0px" />
+      <Spacing size={24} />
+
+      <Account />
+
+      <Spacing size={2} margin={'20'} backgroundColor="grey" />
+
+      <Suspense fallback={<CreditScoreSkeleton />}>
+        <CreditScore />
+      </Suspense>
+
+      <Spacing size={2} margin={'20'} backgroundColor="grey" />
+
       <Suspense fallback={<Banner.Skeleton />}>
         <Banner />
       </Suspense>
-      <Space padding="12px 0px" />
+
+      <Spacing size={24} />
 
       <Suspense
         fallback={[...new Array(10)].map((_, idx) => (

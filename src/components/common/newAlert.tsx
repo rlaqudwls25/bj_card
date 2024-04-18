@@ -51,9 +51,9 @@ const NewAlert = ({
         </Flex>
 
         {onComplete && (
-          <Flex justify="center">
-            <Button onClick={onComplete} size="large" color="primary">
-              <Text typography="t5" color="white" textAlign="right">
+          <Flex justify="flex-end">
+            <Button onClick={onComplete} size="large" color="alert">
+              <Text typography="t5" color="blue" textAlign="right">
                 {buttonLabel}
               </Text>
             </Button>

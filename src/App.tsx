@@ -9,7 +9,8 @@ import PrivateRoute from '@components/auth/PrivateRoute'
 import Apply from '@/pages/Apply'
 import MyPage from './pages/My'
 import ApplyDone from './pages/ApplyDone'
-import { Suspense } from 'react'
+import Credit from './pages/Credit'
+import CreditCheck from './pages/CreditCheck'
 
 function App() {
   return (
@@ -26,9 +27,7 @@ function App() {
           path="/apply/:id"
           element={
             <PrivateRoute>
-              <Suspense fallback={<></>}>
-                <Apply />
-              </Suspense>
+              <Apply />
             </PrivateRoute>
           }
         />
@@ -50,6 +49,9 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        <Route path="/credit" element={<Credit />} />
+        <Route path="/credit/check" element={<CreditCheck />} />
       </Routes>
     </BrowserRouter>
   )

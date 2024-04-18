@@ -50,10 +50,10 @@ const ListRowText = ({
 }) => {
   return (
     <Flex direction="column" gap={10}>
-      <Text bold typography="t4">
+      <Text bold typography="t3">
         {title}
       </Text>
-      <Text typography="t7">{subTitle}</Text>
+      <Text typography="t6">{subTitle}</Text>
     </Flex>
   )
 }

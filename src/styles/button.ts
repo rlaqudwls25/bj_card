@@ -29,6 +29,10 @@ export const buttonColor = {
     color: ${colors.white};
     background-color: ${colors.green};
   `,
+  alert: css`
+    color: ${colors.blue};
+    background-color: ${colors.white};
+  `,
 }
 
 export const buttonToggleColor = {
@@ -43,6 +47,10 @@ export const buttonToggleColor = {
   success: css`
     color: ${colors.green};
     background-color: ${colors.white};
+  `,
+  alert: css`
+    color: ${colors.white};
+    background-color: ${colors.blue};
   `,
 }
 

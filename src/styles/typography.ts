@@ -3,31 +3,31 @@ import { css } from '@emotion/react'
 export const typographyMap = {
   t1: css`
     font-size: 30px;
-    line-height: 1.35;
+    line-height: 1.2;
   `,
   t2: css`
     font-size: 26px;
-    line-height: 1.34;
+    line-height: 1.2;
   `,
   t3: css`
     font-size: 22px;
-    line-height: 1.4;
+    line-height: 1.2;
   `,
   t4: css`
     font-size: 20px;
-    line-height: 1.45;
+    line-height: 1.2;
   `,
   t5: css`
     font-size: 17px;
-    line-height: 1.5;
+    line-height: 1.2;
   `,
   t6: css`
     font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.2;
   `,
   t7: css`
-    font-size: 14px;
-    line-height: 1.35;
+    font-size: 12px;
+    line-height: 1.2;
   `,
 }
 
