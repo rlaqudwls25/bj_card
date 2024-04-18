@@ -4,9 +4,20 @@ import Button from '../common/Button'
 import ScoreChart from '../common/ScoreChart'
 import Skeleton from '../common/Skeleton'
 import { useNavigate } from 'react-router-dom'
+import { userState } from '@/recoil/user'
+import { useRecoilValue } from 'recoil'
+import { useQuery } from '@tanstack/react-query'
+import { getCredit } from '@/firebase/credit'
 
 const CreditScore = () => {
   const navigate = useNavigate()
+  const user = useRecoilValue(userState)
+
+  const { data: creditData } = useQuery({
+    queryKey: ['credit'],
+    queryFn: () => getCredit(user?.uid as string),
+    enabled: user !== null,
+  })
 
   const goToCredit = () => {
     navigate('/credit')
@@ -20,7 +31,7 @@ const CreditScore = () => {
         </Text>
         <Button onClick={goToCredit}>신용점수 보러가기</Button>
       </Flex>
-      <ScoreChart width={80} height={80} score={100} />
+      <ScoreChart width={80} height={80} score={creditData?.creditScore || 0} />
     </Flex>
   )
 }
