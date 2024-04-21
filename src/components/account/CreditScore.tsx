@@ -8,13 +8,14 @@ import { userState } from '@/recoil/user'
 import { useRecoilValue } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
 import { getCredit } from '@/firebase/credit'
+import styled from '@emotion/styled'
 
 const CreditScore = () => {
   const navigate = useNavigate()
   const user = useRecoilValue(userState)
 
   const { data: creditData } = useQuery({
-    queryKey: ['credit'],
+    queryKey: ['credit', user?.uid],
     queryFn: () => getCredit(user?.uid as string),
     enabled: user !== null,
   })
@@ -24,7 +25,7 @@ const CreditScore = () => {
   }
 
   return (
-    <Flex justify="space-between" align="center">
+    <CreditContainer justify="space-between" align="center">
       <Flex direction="column" gap={8}>
         <Text typography="t5" bold>
           신용점수를 올려보세요
@@ -32,9 +33,13 @@ const CreditScore = () => {
         <Button onClick={goToCredit}>신용점수 보러가기</Button>
       </Flex>
       <ScoreChart width={80} height={80} score={creditData?.creditScore || 0} />
-    </Flex>
+    </CreditContainer>
   )
 }
+
+const CreditContainer = styled(Flex)`
+  padding: 24px;
+`
 
 export default CreditScore
 

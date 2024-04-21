@@ -35,4 +35,5 @@ type AccountStatus = 'READY' | 'COMPLETE'
 export interface AccountInfo extends AccountFormValue {
   status: AccountStatus
   userId: string
+  money: number
 }

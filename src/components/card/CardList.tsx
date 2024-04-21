@@ -22,7 +22,6 @@ const CardList = () => {
         getCardList(pageParam as QueryDocumentSnapshot<Card>),
       initialPageParam: undefined,
       getNextPageParam: (snapshot) => {
-        console.log('snapshot', snapshot)
         return snapshot.lastCardIdx
       },
     })

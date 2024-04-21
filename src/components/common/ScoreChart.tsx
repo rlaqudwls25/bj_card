@@ -42,14 +42,14 @@ const ScoreChart = ({ score, width = 100, height = 100 }: ScoreChartProps) => {
         <path
           ref={pathRef}
           d="M18.421 154C12.3741 140.971 9 126.458 9 111.159C9 54.7382 54.8908 9 111.5 9C168.109 9 214 54.7382 214 111.159C214 126.458 210.626 140.971 204.579 154"
-          stroke={colors.grey}
+          stroke={colors.grey300}
           strokeWidth="18"
           strokeLinecap="round"
         ></path>
         {/* 파란색 경로 */}
         <path
           d="M18.421 154C12.3741 140.971 9 126.458 9 111.159C9 54.7382 54.8908 9 111.5 9C168.109 9 214 54.7382 214 111.159C214 126.458 210.626 140.971 204.579 154"
-          stroke={colors.blue}
+          stroke={colors.blue600}
           strokeWidth="18"
           strokeLinecap="round"
           // 전체 길이

@@ -1,6 +1,19 @@
 import { AccountInfo } from '@/types/account'
-import { collection, setDoc, doc } from 'firebase/firestore'
+import { collection, setDoc, doc, getDoc } from 'firebase/firestore'
 import { store } from './firebase'
+
+export async function getTerms(userId: string) {
+  const snapshot = await getDoc(doc(collection(store, 'TERMS'), userId))
+
+  if (!snapshot.exists()) {
+    return null
+  }
+
+  return {
+    id: snapshot.id,
+    ...snapshot.data(),
+  }
+}
 
 export function setTerms({
   userId,
@@ -9,11 +22,20 @@ export function setTerms({
   userId: string
   termsId: string[]
 }) {
-  return setDoc(doc(collection(store, 'ACCOUNT'), userId), { userId, termsId })
+  return setDoc(doc(collection(store, 'TERMS'), userId), { userId, termsId })
 }
 
-export function getTerms(userId: string) {
-  return doc(collection(store, 'ACCOUNT'), userId)
+export async function getAccount(userId: string) {
+  const snapshot = await getDoc(doc(collection(store, 'ACCOUNT'), userId))
+
+  if (!snapshot.exists()) {
+    return null
+  }
+
+  return {
+    id: snapshot.id,
+    ...(snapshot.data() as AccountInfo),
+  }
 }
 
 export function createAccount(accountInfo: AccountInfo) {

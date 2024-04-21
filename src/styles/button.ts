@@ -23,7 +23,7 @@ export const buttonColor = {
   `,
   primary: css`
     color: ${colors.white};
-    background-color: ${colors.blue};
+    background-color: ${colors.blue600};
   `,
   success: css`
     color: ${colors.white};

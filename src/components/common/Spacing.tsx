@@ -5,7 +5,6 @@ interface SpacingProps {
   size?: number
   direction?: 'vertical' | 'horizontal'
   backgroundColor?: Colors
-  margin?: string
 }
 
 const Spacing = styled.div<SpacingProps>(
@@ -16,8 +15,6 @@ const Spacing = styled.div<SpacingProps>(
 
   ({ backgroundColor }) =>
     backgroundColor && `background-color: ${colors[backgroundColor]};`,
-
-  ({ margin }) => margin && `margin: ${margin}px 0px;`,
 )
 
 export default Spacing

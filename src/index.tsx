@@ -9,7 +9,9 @@ import AuthGuard from './components/auth/AuthGuard'
 import { AlertContextProvider } from './contexts/AlertContext'
 
 const queryClient = new QueryClient({
-  defaultOptions: {},
+  defaultOptions: {
+    queries: {},
+  },
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)

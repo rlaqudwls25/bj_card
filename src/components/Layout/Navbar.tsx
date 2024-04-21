@@ -12,10 +12,6 @@ const Navbar = () => {
 
   const isShowLoginButton = !['/signup', '/login'].includes(pathname)
 
-  // const onLogout = async () => {
-  //   await signOut(auth)
-  // }
-
   const renderButton = () => {
     if (user && isShowLoginButton) {
       return (

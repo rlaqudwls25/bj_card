@@ -41,7 +41,7 @@ const Banner = () => {
         {bannerList?.map((banner) => (
           <SwiperSlide key={banner.id}>
             <Link to="/">
-              <Flex direction="column" css={BannerContainerStyle}>
+              <Flex direction="column" css={BannerContainerStyle} gap={10}>
                 <Text bold typography="t4" color="white">
                   {banner.title}
                 </Text>
@@ -64,8 +64,8 @@ const Banner = () => {
 }
 
 const BannerContainerStyle = css`
-  background-color: ${colors.blue};
-  padding: 20px;
+  background-color: ${colors.blue600};
+  padding: 30px;
   border-radius: 8px;
 `
 
