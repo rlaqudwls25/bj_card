@@ -18,9 +18,11 @@ const CardList = () => {
       lastCardIdx: QueryDocumentSnapshot<any>
     }>({
       queryKey: ['cardList'],
-      queryFn: ({ pageParam }) => getCardList(pageParam as string),
+      queryFn: ({ pageParam }) =>
+        getCardList(pageParam as QueryDocumentSnapshot<Card>),
       initialPageParam: undefined,
       getNextPageParam: (snapshot) => {
+        console.log('snapshot', snapshot)
         return snapshot.lastCardIdx
       },
     })

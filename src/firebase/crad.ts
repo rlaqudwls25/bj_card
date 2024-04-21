@@ -17,10 +17,7 @@ import { store } from './firebase'
  * @returns 리스트에 맨 마지막 요소
  */
 
-export async function getCardList(pageParam?: any): Promise<{
-  cardListData: Card[]
-  lastCardIdx: QueryDocumentSnapshot<any>
-}> {
+export async function getCardList(pageParam?: QueryDocumentSnapshot<Card>) {
   const cardQuery =
     pageParam === undefined
       ? query(collection(store, 'CARD'), limit(10))

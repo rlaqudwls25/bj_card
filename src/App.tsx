@@ -11,6 +11,7 @@ import MyPage from './pages/My'
 import ApplyDone from './pages/ApplyDone'
 import Credit from './pages/Credit'
 import CreditCheck from './pages/CreditCheck'
+import Account from './pages/Account'
 
 function App() {
   return (
@@ -46,6 +47,15 @@ function App() {
           element={
             <PrivateRoute>
               <MyPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/account"
+          element={
+            <PrivateRoute>
+              <Account />
             </PrivateRoute>
           }
         />

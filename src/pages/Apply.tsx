@@ -87,8 +87,6 @@ const ApplyPage = () => {
     },
   })
 
-  console.log('status', status)
-
   if (appliedCard !== null && appliedCard?.status === APPLY_STATUS.COMPLETE) {
     return null
   }

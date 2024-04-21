@@ -1,5 +1,5 @@
 import { LoginValues } from '@/types/auth'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import Button from '../common/Button'
 import Flex from '../common/Flex'
 import Spacing from '../common/Spacing'
@@ -8,7 +8,7 @@ import Text from '../common/Text'
 import { Link } from 'react-router-dom'
 import { css } from '@emotion/react'
 import { colors } from '@/styles/colors'
-import { validate } from '@/utils/validate'
+import { validationForm } from '@/utils/validate'
 
 const LoginForm = ({
   onSubmit,
@@ -29,24 +29,7 @@ const LoginForm = ({
     })
   }
 
-  const validateLoginForm = (formValues: LoginValues) => {
-    let error: Partial<LoginValues> = {}
-
-    if (!validate.isEmail(formValues.email)) {
-      error.email = '이메일 형식이 올바르지 않습니다.'
-    }
-
-    if (formValues.password.length < 8) {
-      error.password = '비밀번호는 8자 이상이어야 합니다.'
-    }
-
-    return error
-  }
-
-  const errorCheck = useMemo(
-    () => validateLoginForm(loginFormValues),
-    [loginFormValues],
-  )
+  const error = validationForm(loginFormValues)
 
   return (
     <Flex direction="column">
@@ -55,8 +38,8 @@ const LoginForm = ({
         name="email"
         placeholder="card@gamil.com"
         value={loginFormValues.email}
-        hasError={Boolean(loginFormValues.email) && Boolean(errorCheck.email)}
-        helpMessage={loginFormValues.email && errorCheck.email}
+        hasError={Boolean(loginFormValues.email) && Boolean(error.email)}
+        helpMessage={loginFormValues.email && error.email}
         onChange={handleLoginForm}
       />
 
@@ -66,10 +49,8 @@ const LoginForm = ({
         label="비밀번호"
         name="password"
         value={loginFormValues.password}
-        hasError={
-          Boolean(loginFormValues.password) && Boolean(errorCheck.password)
-        }
-        helpMessage={loginFormValues.password && errorCheck.password}
+        hasError={Boolean(loginFormValues.password) && Boolean(error.password)}
+        helpMessage={loginFormValues.password && error.password}
         onChange={handleLoginForm}
       />
 
