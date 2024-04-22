@@ -7,15 +7,29 @@ import { createAccount, setTerms } from '@/firebase/account'
 import { userState } from '@/recoil/user'
 import { AccountInfo } from '@/types/account'
 import styled from '@emotion/styled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 
 const LAST_STEP = 2
 const Account = () => {
-  const [accountStep, setAccountStep] = useState(0)
-  const navigate = useNavigate()
   const user = useRecoilValue(userState)
+  const navigate = useNavigate()
+  const storageKey = `account-step-${user?.uid}`
+
+  const [accountStep, setAccountStep] = useState<number>(() => {
+    const step = localStorage.getItem(storageKey)
+
+    if (step === null) {
+      return 0
+    }
+
+    return JSON.parse(step)
+  })
+
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(accountStep))
+  }, [accountStep, storageKey])
 
   return (
     <>

@@ -11,12 +11,13 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: React.ReactNode
   hasError?: boolean
   helpMessage?: React.ReactNode
+  unit?: React.ReactNode
 }
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ label, hasError, helpMessage, onFocus, onBlur, ...rest }) => {
+  ({ label, hasError, helpMessage, onFocus, onBlur, unit, ...rest }) => {
     const [isFocused, setIsFocused] = useState(false)
-    const labelColor = hasError ? 'red' : isFocused ? 'blue' : undefined
+    const labelColor = hasError ? 'red' : isFocused ? 'blue400' : undefined
 
     const handleFocus: FocusEventHandler<HTMLInputElement> = (e) => {
       setIsFocused(true)
@@ -30,7 +31,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
     return (
       <div>
-        {label ? (
+        {label && (
           <Text
             typography="t7"
             color={labelColor}
@@ -39,7 +40,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           >
             {label}
           </Text>
-        ) : null}
+        )}
 
         <Input
           // ref={ref}

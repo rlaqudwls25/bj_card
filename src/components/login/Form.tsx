@@ -20,6 +20,8 @@ const LoginForm = ({
     password: '',
   })
 
+  const [showPassword, setShowPassword] = useState(false)
+
   const handleLoginForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
 
@@ -48,6 +50,7 @@ const LoginForm = ({
       <TextField
         label="비밀번호"
         name="password"
+        type={showPassword ? 'text' : 'password'}
         value={loginFormValues.password}
         hasError={Boolean(loginFormValues.password) && Boolean(error.password)}
         helpMessage={loginFormValues.password && error.password}

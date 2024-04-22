@@ -18,7 +18,6 @@ const TransactionForm = () => {
   const handleFormValues = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    console.log('e.target.name', e.target.name)
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
