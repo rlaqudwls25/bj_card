@@ -8,7 +8,7 @@ import { updateApplyStatus } from '@/firebase/apply'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@/recoil/user'
-import useAppliedCard from '../hooks/useAppliedCard'
+import useAppliedCard from '../../hooks/useAppliedCard'
 import { useAlertContext } from '@/contexts/AlertContext'
 import FullPageLoader from '@/components/common/FullPageLoader'
 

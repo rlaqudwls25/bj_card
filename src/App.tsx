@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from '@pages/Home'
 import Test from '@pages/Test'
-import Card from '@pages/Card'
-import SignUp from '@pages/SignUp'
-import Login from '@/pages/Login'
+import Card from '@/pages/card/Card'
+import SignUp from '@/pages/auth/SignUp'
+import Login from '@/pages/auth/Login'
 import Navbar from '@components/Layout/Navbar'
 import PrivateRoute from '@components/auth/PrivateRoute'
-import Apply from '@/pages/Apply'
-import MyPage from './pages/My'
-import ApplyDone from './pages/ApplyDone'
-import Credit from './pages/Credit'
-import CreditCheck from './pages/CreditCheck'
-import Account from './pages/Account'
+import Apply from '@/pages/apply/Apply'
+import MyPage from './pages/my/My'
+import ApplyDone from './pages/apply/ApplyDone'
+import Credit from './pages/credit/Credit'
+import CreditCheck from './pages/credit/CreditCheck'
+import NewAccount from './pages/account/NewAccount'
 
 function App() {
   return (
@@ -52,10 +52,10 @@ function App() {
         />
 
         <Route
-          path="/account"
+          path="/account/create"
           element={
             <PrivateRoute>
-              <Account />
+              <NewAccount />
             </PrivateRoute>
           }
         />

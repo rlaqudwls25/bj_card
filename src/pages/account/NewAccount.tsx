@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 
 const LAST_STEP = 2
-const Account = () => {
+const NewAccount = () => {
   const user = useRecoilValue(userState)
   const navigate = useNavigate()
   const storageKey = `account-step-${user?.uid}`
@@ -81,4 +81,4 @@ const AccountContainer = styled.div`
   padding: 20px;
 `
 
-export default Account
+export default NewAccount
