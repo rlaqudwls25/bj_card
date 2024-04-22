@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom'
 import ProgressBar from '../common/ProgressBar'
 
 const LAST_STEP = 3
-
 const Apply = ({
   onSubmit,
 }: {
