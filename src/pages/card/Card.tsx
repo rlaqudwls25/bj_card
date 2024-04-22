@@ -12,12 +12,29 @@ import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { removeHtmlTag } from '@/utils/removeHtmlTag'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { userState } from '@/recoil/user'
+import { useAlertContext } from '@/contexts/AlertContext'
 
 const Card = () => {
   const { id } = useParams()
   const navigate = useNavigate()
+  const user = useRecoilValue(userState)
+  const { open } = useAlertContext()
 
   const moveToApply = () => {
+    if (!user) {
+      open({
+        title: '로그인이 필요한 기능입니다.',
+        buttonLabel: '확인',
+        onComplete: () => {
+          navigate('/login')
+        },
+      })
+
+      return
+    }
+
     navigate(`/apply/${id}`)
   }
 
