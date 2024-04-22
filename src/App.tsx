@@ -12,6 +12,8 @@ import ApplyDone from './pages/apply/ApplyDone'
 import Credit from './pages/credit/Credit'
 import CreditCheck from './pages/credit/CreditCheck'
 import NewAccount from './pages/account/NewAccount'
+import AccountPage from './pages/account/Account'
+import TransactionPage from './pages/account/Transaction'
 
 function App() {
   return (
@@ -56,6 +58,24 @@ function App() {
           element={
             <PrivateRoute>
               <NewAccount />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/account"
+          element={
+            <PrivateRoute>
+              <AccountPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/account/transaction"
+          element={
+            <PrivateRoute>
+              <TransactionPage />
             </PrivateRoute>
           }
         />

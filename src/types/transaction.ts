@@ -7,4 +7,5 @@ export interface Transaction {
   remainingAmount: number
   displayName: string
   date: string
+  id?: string
 }

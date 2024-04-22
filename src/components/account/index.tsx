@@ -81,7 +81,7 @@ const Account = () => {
           {addDelimiter(accountList.money)}원
         </Text>
       </Flex>
-      {/* <Button>분석</Button> */}
+      <Button onClick={() => navigate('account')}>분석</Button>
     </AccountContainer>
   )
 }

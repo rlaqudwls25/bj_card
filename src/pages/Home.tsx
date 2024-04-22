@@ -6,11 +6,12 @@ import CardList from '@/components/card/CardList'
 import ListRow from '@/components/card/ListRow'
 import Account from '@/components/account'
 import Spacing from '@/components/common/Spacing'
-import CreditScore, {
-  CreditScoreSkeleton,
-} from '@/components/account/CreditScore'
+
 import { colors } from '@/styles/colors'
 import styled from '@emotion/styled'
+import CreditScore, {
+  CreditScoreSkeleton,
+} from '@/components/credit/CreditScore'
 
 const Home = () => {
   return (
