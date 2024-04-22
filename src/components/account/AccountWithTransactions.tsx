@@ -8,7 +8,7 @@ import addDelimiter from '@/utils/addDelimiter'
 import FixedBottomButton from '../common/FixedBottomButton'
 import { useNavigate } from 'react-router-dom'
 
-const Transaction = () => {
+const AccountWithTransaction = () => {
   const { data: transactionListData } = useTransactions()
   const navigate = useNavigate()
 
@@ -65,4 +65,4 @@ const TransactionContainer = styled(Flex)`
   padding: 24px;
 `
 
-export default Transaction
+export default AccountWithTransaction

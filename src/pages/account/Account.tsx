@@ -1,7 +1,7 @@
-import Transaction from '@/components/account/Transactions'
+import Account from '@/components/account'
 
 const AccountPage = () => {
-  return <Transaction />
+  return <Account />
 }
 
 export default AccountPage

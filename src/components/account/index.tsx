@@ -1,94 +1,84 @@
-import { useAlertContext } from '@/contexts/AlertContext'
-import { useAccount } from '@/hooks/useAccount'
+import AccountForm from '@/components/account/AccountForm'
+import Terms from '@/components/account/Terms'
+import FixedBottomButton from '@/components/common/FixedBottomButton'
+import FullPageLoader from '@/components/common/FullPageLoader'
+import ProgressBar from '@/components/common/ProgressBar'
+import { createAccount, setTerms } from '@/firebase/account'
 import { userState } from '@/recoil/user'
-import addDelimiter from '@/utils/addDelimiter'
+import { AccountInfo } from '@/types/account'
 import styled from '@emotion/styled'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
-import Button from '../common/Button'
-import Flex from '../common/Flex'
-import Text from '../common/Text'
 
+const LAST_STEP = 2
 const Account = () => {
-  const accountList = useAccount()
-  const navigate = useNavigate()
   const user = useRecoilValue(userState)
-  const { open } = useAlertContext()
+  const navigate = useNavigate()
+  const storageKey = `account-step-${user?.uid}`
 
-  const goToAccount = () => {
-    if (!user) {
-      open({
-        title: '로그인이 필요합니다.',
-        buttonLabel: '확인',
-        onComplete: () => navigate('/login'),
-      })
+  const [accountStep, setAccountStep] = useState<number>(() => {
+    const step = localStorage.getItem(storageKey)
+
+    if (step === null) {
+      return 0
     }
 
-    if (user) {
-      navigate('/account')
-    }
-  }
+    return JSON.parse(step)
+  })
 
-  if (!accountList) {
-    return (
-      <>
-        <AccountContainer justify="space-between">
-          <Flex direction="column" gap={8}>
-            <Text typography="t5" bold style={{ whiteSpace: 'pre-wrap' }}>
-              {'계좌 개설이\n더 쉽고 빨라졌어요'}
-            </Text>
-            <Button size="small" onClick={goToAccount}>
-              {'3분만에 개설하기'}
-            </Button>
-          </Flex>
-          <img
-            src="https://cdn0.iconfinder.com/data/icons/investing-and-finance-1/240/cash-256.png"
-            alt="돈 이미지"
-            width="80px"
-            height="80px"
-          />
-        </AccountContainer>
-      </>
-    )
-  }
-
-  if (accountList.status === 'READY') {
-    return (
-      <AccountContainer justify="space-between">
-        <Flex direction="column" gap={8}>
-          <Text typography="t5" bold style={{ whiteSpace: 'pre-wrap' }}>
-            계좌개설 심사중입니다.
-          </Text>
-        </Flex>
-        <img
-          src="https://cdn0.iconfinder.com/data/icons/investing-and-finance-1/240/cash-256.png"
-          alt="돈 이미지"
-          width="80px"
-          height="80px"
-        />
-      </AccountContainer>
-    )
-  }
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(accountStep))
+  }, [accountStep, storageKey])
 
   return (
-    <AccountContainer justify="space-between" align="center">
-      <Flex direction="column" gap={2}>
-        <Text
-          typography="t6"
-          color="black"
-        >{`${accountList.name} 회원님의 자산`}</Text>
-        <Text typography="t3" bold>
-          {addDelimiter(accountList.money)}원
-        </Text>
-      </Flex>
-      <Button onClick={() => navigate('account')}>분석</Button>
-    </AccountContainer>
+    <>
+      <ProgressBar progress={accountStep / LAST_STEP} />
+      <AccountContainer>
+        {accountStep === 0 && (
+          <Terms
+            onNext={async (termsId) => {
+              await setTerms({ userId: user?.uid as string, termsId })
+
+              setAccountStep((prev) => prev + 1)
+            }}
+          />
+        )}
+
+        {accountStep === 1 && (
+          <AccountForm
+            onNext={async (accountFormValues) => {
+              const newAccountFormValues: AccountInfo = {
+                ...accountFormValues,
+                status: 'READY',
+                money: 0,
+                userId: user?.uid as string,
+              }
+
+              await createAccount(newAccountFormValues)
+
+              setAccountStep((prev) => prev + 1)
+            }}
+          />
+        )}
+      </AccountContainer>
+
+      {accountStep === 2 && (
+        <>
+          <FullPageLoader message="계좌개설 신청이 완료되었습니다." />
+          <FixedBottomButton
+            label="확인"
+            size="large"
+            onClick={() => navigate('/')}
+          />
+        </>
+      )}
+    </>
   )
 }
 
-const AccountContainer = styled(Flex)`
-  padding: 24px;
-  border-radius: 6px;
+const AccountContainer = styled.div`
+  padding: 20px;
 `
 
 export default Account

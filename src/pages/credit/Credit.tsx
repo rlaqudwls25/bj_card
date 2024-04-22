@@ -19,7 +19,7 @@ const CreditPage = () => {
   const { open } = useAlertContext()
 
   const { data: creditData } = useQuery({
-    queryKey: ['credit'],
+    queryKey: ['credit', user?.uid],
     queryFn: () => getCredit(user?.uid as string),
     enabled: user !== null,
   })
