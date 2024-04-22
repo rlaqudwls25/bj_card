@@ -1,5 +1,5 @@
 import { AccountInfo } from '@/types/account'
-import { collection, setDoc, doc, getDoc } from 'firebase/firestore'
+import { collection, setDoc, doc, getDoc, updateDoc } from 'firebase/firestore'
 import { store } from './firebase'
 
 export async function getTerms(userId: string) {
@@ -43,4 +43,10 @@ export function createAccount(accountInfo: AccountInfo) {
     doc(collection(store, 'ACCOUNT'), accountInfo.userId),
     accountInfo,
   )
+}
+
+export function updateAccount(userId: string, money: number) {
+  const snapshot = doc(collection(store, 'ACCOUNT'), userId)
+
+  return updateDoc(snapshot, { money })
 }
