@@ -6,21 +6,27 @@ import Skeleton from '../common/Skeleton'
 import { useNavigate } from 'react-router-dom'
 import { userState } from '@/recoil/user'
 import { useRecoilValue } from 'recoil'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { getCredit } from '@/firebase/credit'
 import styled from '@emotion/styled'
+import { AccountSkeleton } from '../account/HomeAccountList'
 
 const CreditScore = () => {
   const navigate = useNavigate()
   const user = useRecoilValue(userState)
 
-  const { data: creditData } = useSuspenseQuery({
+  const { data: creditData, isLoading } = useQuery({
     queryKey: ['credit', user?.uid],
     queryFn: () => getCredit(user?.uid as string),
+    enabled: user !== null,
   })
 
   const goToCredit = () => {
     navigate('/credit')
+  }
+
+  if (isLoading) {
+    return <AccountSkeleton />
   }
 
   return (

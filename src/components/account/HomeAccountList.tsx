@@ -11,7 +11,7 @@ import Skeleton from '../common/Skeleton'
 import Text from '../common/Text'
 
 const HomeAccountList = () => {
-  const accountList = useAccount()
+  const { accountList, isLoading } = useAccount()
   const navigate = useNavigate()
   const user = useRecoilValue(userState)
   const { open } = useAlertContext()
@@ -28,6 +28,10 @@ const HomeAccountList = () => {
     if (user) {
       navigate('/account')
     }
+  }
+
+  if (isLoading) {
+    return <AccountSkeleton />
   }
 
   if (!accountList) {
@@ -97,7 +101,7 @@ export default HomeAccountList
 export const AccountSkeleton = () => {
   return (
     <AccountContainer>
-      <Skeleton width={100} height={140} />
+      <Skeleton width={100} height={60} />
     </AccountContainer>
   )
 }
