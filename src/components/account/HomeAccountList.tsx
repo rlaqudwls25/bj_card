@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import Button from '../common/Button'
 import Flex from '../common/Flex'
+import Skeleton from '../common/Skeleton'
 import Text from '../common/Text'
 
 const HomeAccountList = () => {
@@ -92,3 +93,11 @@ const AccountContainer = styled(Flex)`
 `
 
 export default HomeAccountList
+
+export const AccountSkeleton = () => {
+  return (
+    <AccountContainer>
+      <Skeleton width={100} height={140} />
+    </AccountContainer>
+  )
+}

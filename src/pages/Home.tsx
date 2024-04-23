@@ -4,14 +4,14 @@ import Banner from '@/components/banner/Banner'
 import Container from '@/components/common/Container'
 import CardList from '@/components/card/CardList'
 import ListRow from '@/components/card/ListRow'
-import HomeAccountList from '@/components/account/HomeAccountList'
+import HomeAccountList, {
+  AccountSkeleton,
+} from '@/components/account/HomeAccountList'
 import Spacing from '@/components/common/Spacing'
 
 import { colors } from '@/styles/colors'
 import styled from '@emotion/styled'
-import CreditScore, {
-  CreditScoreSkeleton,
-} from '@/components/credit/CreditScore'
+import CreditScore from '@/components/credit/CreditScore'
 
 const Home = () => {
   return (
@@ -21,13 +21,12 @@ const Home = () => {
         subTitle="회원님을 위한 혜택 좋은 카드를 모아놓았습니다."
       />
 
-      <AccountCreditContainer>
-        <HomeAccountList />
-
-        <Suspense fallback={<CreditScoreSkeleton />}>
+      <Suspense fallback={<AccountSkeleton />}>
+        <AccountCreditContainer>
+          <HomeAccountList />
           <CreditScore />
-        </Suspense>
-      </AccountCreditContainer>
+        </AccountCreditContainer>
+      </Suspense>
 
       <Container>
         <Suspense fallback={<Banner.Skeleton />}>

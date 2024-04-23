@@ -1,4 +1,4 @@
-import { Transaction } from '@/types/transaction'
+import { Transaction, TransactionFilterType } from '@/types/transaction'
 import {
   collection,
   doc,
@@ -6,6 +6,7 @@ import {
   limit,
   orderBy,
   query,
+  QuerySnapshot,
   setDoc,
   startAfter,
   where,
@@ -19,25 +20,13 @@ export function createTransaction(newTransaction: Transaction) {
 export async function getTransaction({
   pageParam,
   userId,
+  filter = 'all',
 }: {
   pageParam?: any
   userId: string
+  filter?: TransactionFilterType
 }) {
-  const transactionQuery =
-    pageParam === undefined
-      ? query(
-          collection(store, 'TRANSACTION'),
-          where('userId', '==', userId),
-          orderBy('date', 'desc'),
-          limit(10),
-        )
-      : query(
-          collection(store, 'TRANSACTION'),
-          where('userId', '==', userId),
-          orderBy('date', 'desc'),
-          startAfter(pageParam),
-          limit(10),
-        )
+  const transactionQuery = generateQuery({ filter, pageParam, userId })
 
   const transactionSnapshot = await getDocs(transactionQuery)
 
@@ -50,4 +39,35 @@ export async function getTransaction({
   }))
 
   return { transactionData, lastVisible }
+}
+
+function generateQuery({
+  userId,
+  pageParam,
+  filter,
+}: {
+  userId: string
+  pageParam?: QuerySnapshot<any>
+  filter?: TransactionFilterType
+}) {
+  const baseQuery = query(
+    collection(store, 'TRANSACTION'),
+    where('userId', '==', userId),
+    orderBy('date', 'desc'),
+    limit(10),
+  )
+
+  if (filter !== 'all') {
+    if (pageParam === undefined) {
+      return query(baseQuery, where('type', '==', filter))
+    }
+
+    return query(baseQuery, startAfter(pageParam), where('type', '==', filter))
+  } else {
+    if (pageParam === undefined) {
+      return baseQuery
+    }
+
+    return query(baseQuery, startAfter(pageParam))
+  }
 }

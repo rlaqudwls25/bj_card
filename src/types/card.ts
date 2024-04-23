@@ -9,3 +9,7 @@ export interface Card {
   }
   payback?: string
 }
+
+export interface CardInfo extends Card {
+  id?: string
+}

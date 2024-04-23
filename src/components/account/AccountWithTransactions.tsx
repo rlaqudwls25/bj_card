@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 const AccountWithTransaction = () => {
   const { data: transactionListData } = useTransactions()
+
   const navigate = useNavigate()
 
   const transactionList = transactionListData?.pages
@@ -52,11 +53,11 @@ const AccountWithTransaction = () => {
           })}
         </ul>
       )}
-      {/* <FixedBottomButton
+      <FixedBottomButton
         label="자세히 보기"
         size="large"
         onClick={() => navigate('/account/transaction')}
-      /> */}
+      />
     </TransactionContainer>
   )
 }

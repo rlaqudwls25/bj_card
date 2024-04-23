@@ -6,7 +6,7 @@ import Skeleton from '../common/Skeleton'
 import { useNavigate } from 'react-router-dom'
 import { userState } from '@/recoil/user'
 import { useRecoilValue } from 'recoil'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { getCredit } from '@/firebase/credit'
 import styled from '@emotion/styled'
 
@@ -14,10 +14,9 @@ const CreditScore = () => {
   const navigate = useNavigate()
   const user = useRecoilValue(userState)
 
-  const { data: creditData } = useQuery({
+  const { data: creditData } = useSuspenseQuery({
     queryKey: ['credit', user?.uid],
     queryFn: () => getCredit(user?.uid as string),
-    enabled: user !== null,
   })
 
   const goToCredit = () => {

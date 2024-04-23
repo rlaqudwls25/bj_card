@@ -1,7 +1,7 @@
 import ListRow from './ListRow'
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import { getCardList } from '@/firebase/crad'
-import { Card } from '@/types/card'
+import { Card, CardInfo } from '@/types/card'
 import { QueryDocumentSnapshot } from 'firebase/firestore'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Badge from '../common/Badge'
@@ -38,7 +38,7 @@ const CardList = () => {
     fetchNextPage()
   }
 
-  const cards = data?.pages.flatMap((page: any) => page.cardListData)
+  const cards = data?.pages.flatMap((page) => page.cardListData) as CardInfo[]
 
   return (
     <>
