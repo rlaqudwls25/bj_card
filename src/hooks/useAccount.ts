@@ -7,11 +7,16 @@ import { userState } from '@/recoil/user'
 export function useAccount() {
   const user = useRecoilValue(userState)
 
-  const { data: accountList, isLoading } = useQuery({
+  const {
+    data: accountList,
+    isLoading,
+    status,
+    error,
+  } = useQuery({
     queryKey: ['account', user?.uid],
     queryFn: () => getAccount(user?.uid as string),
     enabled: user !== null,
   })
 
-  return { accountList, isLoading }
+  return { accountList, isLoading, status, error }
 }
