@@ -22,7 +22,7 @@ interface ButtonProps {
   isToggle?: boolean
 }
 
-const BaseButton = styled.button<ButtonProps>(
+export const BaseButton = styled.button<ButtonProps>(
   {
     cursor: 'pointer',
     borderRadius: '6px',
@@ -48,7 +48,7 @@ const BaseButton = styled.button<ButtonProps>(
       : undefined,
 )
 
-const ButtonGroup = ({
+export const ButtonGroup = ({
   title,
   children,
 }: {

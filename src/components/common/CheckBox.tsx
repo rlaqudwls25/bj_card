@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 import Text from './Text'
 
-interface CheckBoxProps {
+export interface CheckBoxProps {
   isCheck: boolean
   onChange?: () => void
   label?: string
@@ -24,6 +24,7 @@ export default CheckBox
 
 const Label = styled.label`
   display: flex;
+  align-items: center;
   span {
     margin-left: 4px;
   }
