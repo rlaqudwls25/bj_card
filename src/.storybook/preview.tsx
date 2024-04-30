@@ -1,7 +1,7 @@
 import { Global } from '@emotion/react'
 import type { Preview } from '@storybook/react'
 import React from 'react'
-import globalStyles from '../src/styles/globalStyles'
+import globalStyles from '../styles/globalStyles'
 
 const preview: Preview = {
   decorators: [
