@@ -10,6 +10,7 @@ import styled from '@emotion/styled'
 import { TRANSACTION_FILTER } from '@/constants/transaction'
 import { useState } from 'react'
 import { TransactionFilterType } from '@/types/transaction'
+import Select from '@/components/common/Select'
 
 const TransactionPage = () => {
   const [transactionFilter, setTransactionFilter] =
@@ -30,8 +31,10 @@ const TransactionPage = () => {
     fetchNextPage()
   }
 
-  const handleFilter = (filter: TransactionFilterType) => {
-    setTransactionFilter(filter)
+  const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target
+
+    setTransactionFilter(value as TransactionFilterType)
   }
 
   const transactionList =
@@ -39,17 +42,13 @@ const TransactionPage = () => {
       .map((transaction) => transaction.transactionData)
       .flat() || []
 
-  console.log(transactionList)
-
   return (
     <TransactionPageContainer direction="column" justify="center">
-      <Flex as="ul" justify="flex-end">
-        {TRANSACTION_FILTER.map((filter) => (
-          <li key={filter.value} onClick={() => handleFilter(filter.value)}>
-            {filter.label}
-          </li>
-        ))}
-      </Flex>
+      <Select
+        options={TRANSACTION_FILTER}
+        onChange={handleFilter}
+        inputSize="small"
+      />
       <InfiniteScroll
         dataLength={transactionList.length}
         hasMore={hasNextPage}

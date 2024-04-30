@@ -10,7 +10,6 @@ export function useTransactions({
 }: {
   filter?: TransactionFilterType
 } = {}) {
-  console.log('filter', filter)
   const user = useRecoilValue(userState)
 
   return useInfiniteQuery<{
