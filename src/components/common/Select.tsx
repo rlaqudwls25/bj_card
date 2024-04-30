@@ -1,3 +1,4 @@
+import { inputSize, InputSize } from '@/styles/input'
 import { Option } from '@/types/apply'
 import styled from '@emotion/styled'
 import { SelectHTMLAttributes } from 'react'
@@ -9,6 +10,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string
   options: Option[]
   placeholder?: string
+  inputSize?: InputSize
 }
 
 const Select = ({
@@ -16,22 +18,22 @@ const Select = ({
   options,
   value,
   placeholder,
+  inputSize = 'large',
   ...rest
 }: SelectProps) => {
   return (
-    <Flex direction="column">
+    <SelectBox direction="column">
       {label ? (
         <Text
-          typography="t6"
+          typography="t7"
           color="black"
-          bold
           display="inline-block"
           margin="0px 0px 8px 0px"
         >
           {label}
         </Text>
       ) : null}
-      <BaseSelect required value={value} {...rest}>
+      <BaseSelect required value={value} inputSize={inputSize} {...rest}>
         <option disabled hidden value="">
           {placeholder}
         </option>
@@ -41,14 +43,28 @@ const Select = ({
           </option>
         ))}
       </BaseSelect>
-    </Flex>
+    </SelectBox>
   )
 }
 
-const BaseSelect = styled.select`
-  position: relative;
+const BaseSelect = styled.select<{ inputSize: InputSize }>`
+  ${({ inputSize }) =>
+    inputSize === 'large' && {
+      width: '100%',
+    }}
+
+  ${({ inputSize }) =>
+    inputSize === 'medium' && {
+      width: '50%',
+    }}
+
+  ${({ inputSize }) =>
+    inputSize === 'small' && {
+      width: '10%',
+    }}
+
   height: 52px;
-  background-color: ${colors.grey};
+  background-color: ${colors.grey200};
   border: none;
   border-radius: 16px;
   padding: 0 16px;
@@ -58,10 +74,13 @@ const BaseSelect = styled.select`
   -moz-appearance: none;
   appearance: none;
 
-  // 필수값이 입력되지 않았을 때
   &:required:invalid {
     color: #c0c4c7;
   }
+`
+
+const SelectBox = styled(Flex)`
+  position: relative;
 `
 
 export default Select
