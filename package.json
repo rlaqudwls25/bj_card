@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.24.0",
+    "@babel/runtime": "^7.24.5",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@storybook/addon-themes": "^8.0.9",

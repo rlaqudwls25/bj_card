@@ -28,6 +28,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@babel/core", "npm:7.24.0"],\
           ["@babel/preset-react", "virtual:0f29e60bbc8428ef4a1ff44bdc7411470186367d20c2f28a953fbb5fcc65aa31b49f6d7ce7867b3e5980e44e8b861ba38bc9a26794ac23df154c1b6237530e77#npm:7.23.3"],\
+          ["@babel/runtime", "npm:7.24.5"],\
           ["@craco/craco", "virtual:0f29e60bbc8428ef4a1ff44bdc7411470186367d20c2f28a953fbb5fcc65aa31b49f6d7ce7867b3e5980e44e8b861ba38bc9a26794ac23df154c1b6237530e77#npm:7.1.0"],\
           ["@emotion/babel-plugin", "npm:11.11.0"],\
           ["@emotion/babel-preset-css-prop", "virtual:0f29e60bbc8428ef4a1ff44bdc7411470186367d20c2f28a953fbb5fcc65aa31b49f6d7ce7867b3e5980e44e8b861ba38bc9a26794ac23df154c1b6237530e77#npm:11.11.0"],\
@@ -5206,6 +5207,14 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.24.4-1a974e2dd0-8ec8ce2c14.zip/node_modules/@babel/runtime/",\
         "packageDependencies": [\
           ["@babel/runtime", "npm:7.24.4"],\
+          ["regenerator-runtime", "npm:0.14.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:7.24.5", {\
+        "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.24.5-e4447a1e48-e0f4f4d450.zip/node_modules/@babel/runtime/",\
+        "packageDependencies": [\
+          ["@babel/runtime", "npm:7.24.5"],\
           ["regenerator-runtime", "npm:0.14.1"]\
         ],\
         "linkType": "HARD"\
@@ -19829,6 +19838,7 @@ const RAW_RUNTIME_STATE =
           ["j_card", "workspace:."],\
           ["@babel/core", "npm:7.24.0"],\
           ["@babel/preset-react", "virtual:0f29e60bbc8428ef4a1ff44bdc7411470186367d20c2f28a953fbb5fcc65aa31b49f6d7ce7867b3e5980e44e8b861ba38bc9a26794ac23df154c1b6237530e77#npm:7.23.3"],\
+          ["@babel/runtime", "npm:7.24.5"],\
           ["@craco/craco", "virtual:0f29e60bbc8428ef4a1ff44bdc7411470186367d20c2f28a953fbb5fcc65aa31b49f6d7ce7867b3e5980e44e8b861ba38bc9a26794ac23df154c1b6237530e77#npm:7.1.0"],\
           ["@emotion/babel-plugin", "npm:11.11.0"],\
           ["@emotion/babel-preset-css-prop", "virtual:0f29e60bbc8428ef4a1ff44bdc7411470186367d20c2f28a953fbb5fcc65aa31b49f6d7ce7867b3e5980e44e8b861ba38bc9a26794ac23df154c1b6237530e77#npm:11.11.0"],\
