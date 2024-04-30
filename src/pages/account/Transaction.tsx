@@ -39,8 +39,6 @@ const TransactionPage = () => {
       .map((transaction) => transaction.transactionData)
       .flat() || []
 
-  console.log(transactionList)
-
   return (
     <TransactionPageContainer direction="column" justify="center">
       <Flex as="ul" justify="flex-end">
