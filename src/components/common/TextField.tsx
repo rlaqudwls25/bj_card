@@ -1,21 +1,32 @@
+import { InputSize } from '@/styles/input'
+import styled from '@emotion/styled'
 import {
   FocusEventHandler,
   forwardRef,
   InputHTMLAttributes,
   useState,
 } from 'react'
+import Flex from './Flex'
 import Input from './Input'
 import Text from './Text'
 
-interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: React.ReactNode
   hasError?: boolean
   helpMessage?: React.ReactNode
-  unit?: React.ReactNode
+  inputSize?: InputSize
 }
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ label, hasError, helpMessage, onFocus, onBlur, unit, ...rest }) => {
+  ({
+    label,
+    hasError,
+    helpMessage,
+    inputSize = 'large',
+    onFocus,
+    onBlur,
+    ...rest
+  }) => {
     const [isFocused, setIsFocused] = useState(false)
     const labelColor = hasError ? 'red' : isFocused ? 'blue400' : undefined
 
@@ -30,7 +41,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     }
 
     return (
-      <div>
+      <InputBox direction="column">
         {label && (
           <Text
             typography="t7"
@@ -47,10 +58,11 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           aria-invalid={hasError}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          inputSize={inputSize}
           {...rest}
         />
 
-        {helpMessage && (
+        {helpMessage && hasError && (
           <Text
             typography="t7"
             color={labelColor}
@@ -60,9 +72,11 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             {helpMessage}
           </Text>
         )}
-      </div>
+      </InputBox>
     )
   },
 )
+
+const InputBox = styled(Flex)``
 
 export default TextField
