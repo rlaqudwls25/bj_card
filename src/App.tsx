@@ -14,6 +14,7 @@ import CreditCheck from './pages/credit/CreditCheck'
 import NewAccount from './pages/account/Account'
 import AccountPage from './pages/account/AccountWithTransaction'
 import TransactionPage from './pages/account/Transaction'
+import { Suspense } from 'react'
 
 function App() {
   return (
