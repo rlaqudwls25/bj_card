@@ -18,15 +18,18 @@ export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({
-    label,
-    hasError,
-    helpMessage,
-    inputSize = 'large',
-    onFocus,
-    onBlur,
-    ...rest
-  }) => {
+  (
+    {
+      label,
+      hasError,
+      helpMessage,
+      inputSize = 'large',
+      onFocus,
+      onBlur,
+      ...rest
+    },
+    ref,
+  ) => {
     const [isFocused, setIsFocused] = useState(false)
     const labelColor = hasError ? 'red' : isFocused ? 'blue400' : undefined
 
@@ -54,7 +57,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         )}
 
         <Input
-          // ref={ref}
+          ref={ref}
           aria-invalid={hasError}
           onFocus={handleFocus}
           onBlur={handleBlur}
