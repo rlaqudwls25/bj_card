@@ -1,6 +1,9 @@
 const MaxAmount = 1000000
 const MinAmount = 100000
 
+const Category_MAX = 100000
+const Category_MIN = 10000
+
 export function generateChartData() {
   return [
     '2023-06-30',
@@ -21,5 +24,14 @@ export function generateChartData() {
       Math.random() * (MaxAmount - MinAmount) + MinAmount,
     ),
     id: index,
+  }))
+}
+
+export function generatePieChartData() {
+  return ['카페', '쇼핑', '여행', '식비', '기타'].map((category) => ({
+    category,
+    amount: Math.floor(
+      Math.random() * (Category_MAX - Category_MIN) + Category_MAX,
+    ),
   }))
 }

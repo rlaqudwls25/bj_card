@@ -143,13 +143,17 @@ const MonthlyChart = ({
         >
           <TooltipBox direction="column">
             <div>
-              <Text color="white">날짜: </Text>
+              <Text color="white" typography="t5">
+                날짜 :
+              </Text>
               <Text color="white" typography="t5">
                 {formatDate(tooltipData.date)}
               </Text>
             </div>
             <div>
-              <Text color="white">잔액: </Text>
+              <Text color="white" typography="t5">
+                잔액 :
+              </Text>
               <Text color="white" typography="t5">
                 {addDelimiter(tooltipData.remainingAmount)}원
               </Text>
@@ -179,7 +183,7 @@ const ChartWrapper = ({ height = 200, chartData }: ChartWrapperProps) => {
   )
 }
 
-const TooltipBox = styled(Flex)`
+export const TooltipBox = styled(Flex)`
   padding: 8px;
 `
 
