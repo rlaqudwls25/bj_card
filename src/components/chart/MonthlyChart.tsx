@@ -85,8 +85,7 @@ const MonthlyChart = ({
   return (
     <div style={{ position: 'relative' }}>
       <svg ref={containerRef} width={width} height={height}>
-        {/* <GradientTealBlue id="teal" /> */}
-        <rect width={width} height={height} fill="url(#teal)" rx={14} />
+        {/* <rect width={width} height={height} fill="url(#teal)" rx={14} /> */}
         <Group top={verticalMargin / 2}>
           {chartData.map((d) => {
             const date = xDate(d)
@@ -169,16 +168,23 @@ interface ChartWrapperProps {
 
 const ChartWrapper = ({ height = 200, chartData }: ChartWrapperProps) => {
   return (
-    <ParentSize>
-      {({ width }) => (
-        <MonthlyChart width={width} height={height} chartData={chartData} />
-      )}
-    </ParentSize>
+    <ChartContainer direction="column">
+      <Text bold>월별 잔액</Text>
+      <ParentSize>
+        {({ width }) => (
+          <MonthlyChart width={width} height={height} chartData={chartData} />
+        )}
+      </ParentSize>
+    </ChartContainer>
   )
 }
 
 const TooltipBox = styled(Flex)`
   padding: 8px;
+`
+
+const ChartContainer = styled(Flex)`
+  padding: 24px;
 `
 
 export default ChartWrapper
