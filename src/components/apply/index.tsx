@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useParams } from 'react-router-dom'
 import ProgressBar from '../common/ProgressBar'
+import { FunnelStep } from '@/components/common/Funnel'
+import { useFunnel } from '@/hooks/useFunnel'
 
 const LAST_STEP = 3
 const Apply = ({
@@ -19,6 +21,13 @@ const Apply = ({
 
   const storageKey = `apply-${user?.uid}-${id}`
 
+  const [Funnel, setStep, currentStep, stepCount] = useFunnel([
+    'terms',
+    'basicInfo',
+    'cardInfo',
+    'complete',
+  ] as const)
+
   const [applyValues, setApplyValues] = useState<Partial<ApplyValues>>(() => {
     const applied = localStorage.getItem(storageKey)
 
@@ -26,7 +35,6 @@ const Apply = ({
       return {
         userId: user?.uid,
         cardId: id,
-        step: 0,
       }
     }
 
@@ -34,7 +42,7 @@ const Apply = ({
   })
 
   useEffect(() => {
-    if (applyValues.step === 3) {
+    if (currentStep === 'complete') {
       localStorage.removeItem(storageKey)
       onSubmit({
         ...applyValues,
@@ -50,32 +58,43 @@ const Apply = ({
     setApplyValues((prevValues) => ({
       ...prevValues,
       terms,
-      step: (prevValues.step as number) + 1,
     }))
+
+    setStep('basicInfo')
   }
 
   const handleBasicInfoChange = (values: BasicInfoValues) => {
     setApplyValues((prevValues) => ({
       ...prevValues,
       ...values,
-      step: (prevValues.step as number) + 1,
     }))
+    setStep('cardInfo')
   }
 
   const handleCardInfoChange = (cardInfoValues: CardInfoValues) => {
     setApplyValues((prevValues) => ({
       ...prevValues,
       ...cardInfoValues,
-      step: (prevValues.step as number) + 1,
     }))
+
+    setStep('complete')
   }
 
   return (
     <>
-      <ProgressBar progress={(applyValues?.step as number) / LAST_STEP} />
-      {applyValues.step === 0 && <Terms onNext={handleTermsChange} />}
-      {applyValues.step === 1 && <BasicInfo onNext={handleBasicInfoChange} />}
-      {applyValues.step === 2 && <CardInfo onNext={handleCardInfoChange} />}
+      <ProgressBar progress={stepCount / LAST_STEP} />
+
+      <Funnel>
+        <FunnelStep name="terms">
+          <Terms onNext={handleTermsChange} />
+        </FunnelStep>
+        <FunnelStep name="basicInfo">
+          <BasicInfo onNext={handleBasicInfoChange} />
+        </FunnelStep>
+        <FunnelStep name="cardInfo">
+          <CardInfo onNext={handleCardInfoChange} />
+        </FunnelStep>
+      </Funnel>
     </>
   )
 }

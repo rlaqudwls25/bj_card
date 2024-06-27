@@ -95,11 +95,7 @@ const ApplyPage = () => {
     return <FullPageLoader message={STATUS_MESSAGE[status ?? 'READY']} />
   }
 
-  return (
-    <>
-      <Apply onSubmit={mutate} />
-    </>
-  )
+  return <Apply onSubmit={mutate} />
 }
 
 export default ApplyPage
