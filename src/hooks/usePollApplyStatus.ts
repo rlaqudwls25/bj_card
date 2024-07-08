@@ -8,10 +8,10 @@ interface usePollApplyStatusProps {
 export function usePollApplyStatus({ enabled }: usePollApplyStatusProps) {
   return useQuery({
     queryKey: ['applyStatus'],
-    queryFn: () => getApplyStatus(),
+    queryFn: getApplyStatus,
     enabled,
     refetchInterval: 2000,
-    staleTime: 0,
+    staleTime: 1000 * 60,
   })
 }
 
