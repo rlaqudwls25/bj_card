@@ -10,7 +10,9 @@ import { AlertContextProvider } from './contexts/AlertContext'
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: {},
+    queries: {
+      gcTime: 1000 * 60 * 60 * 24,
+    },
   },
 })
 

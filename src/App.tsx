@@ -14,6 +14,8 @@ import CreditCheck from './pages/credit/CreditCheck'
 import NewAccount from './pages/account/Account'
 import AccountPage from './pages/account/AccountWithTransaction'
 import TransactionPage from './pages/account/Transaction'
+import { Suspense } from 'react'
+import FullPageLoader from '@common/FullPageLoader'
 
 function App() {
   return (
@@ -30,7 +32,9 @@ function App() {
           path="/apply/:id"
           element={
             <PrivateRoute>
-              <Apply />
+              <Suspense fallback={<FullPageLoader />}>
+                <Apply />
+              </Suspense>
             </PrivateRoute>
           }
         />

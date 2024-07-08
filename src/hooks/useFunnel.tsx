@@ -1,5 +1,6 @@
 import React, { isValidElement } from 'react'
 import { useAlertContext } from '@/contexts/AlertContext'
+import { useLocalStorage } from './useLocalStorage'
 
 type StepName = string
 
@@ -15,8 +16,13 @@ type UseFunnelResult = [
   number,
 ]
 
+const STEP_STORAGE_KEY = 'funnel-step'
+
 export const useFunnel = (steps: readonly StepName[]): UseFunnelResult => {
-  const [currentStep, setCurrentStep] = React.useState<StepName>(steps[0])
+  const [currentStep, setCurrentStep] = useLocalStorage<StepName>(
+    STEP_STORAGE_KEY,
+    steps[0],
+  )
 
   const Funnel: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { open } = useAlertContext()
@@ -46,7 +52,7 @@ export const useFunnel = (steps: readonly StepName[]): UseFunnelResult => {
     }
   }
 
-  const currentStepIndex = steps.indexOf(currentStep) + 1
+  const currentStepIndex = steps.indexOf(currentStep)
 
   return [Funnel, setStep, currentStep, currentStepIndex]
 }
