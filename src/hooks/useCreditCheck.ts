@@ -6,13 +6,15 @@ interface useCreditCheckProps {
 }
 
 export const useCreditCheck = ({ enabled }: useCreditCheckProps) => {
-  return useQuery({
+  const creditCheck = useQuery({
     queryKey: ['creditCheck'],
     queryFn: () => getCreditCheck(),
     enabled,
     refetchInterval: 2000,
     refetchIntervalInBackground: true,
   })
+
+  return creditCheck
 }
 
 function getCreditCheck() {
